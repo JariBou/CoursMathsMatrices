@@ -1,8 +1,10 @@
-﻿namespace CoursMatrices;
+﻿using System.Numerics;
 
-public partial class MatrixInt
+namespace CoursMatrices.Matrices;
+
+public partial class  Matrix<T>
 {
-    protected bool Equals(MatrixInt other)
+    protected bool Equals(Matrix<T> other)
     {
         return _columnCount == other._columnCount && _rowCount == other._rowCount && _matrix.Equals(other._matrix);
     }
@@ -20,28 +22,28 @@ public partial class MatrixInt
         return HashCode.Combine(_columnCount, _rowCount, _matrix);
     }
 
-    public int this[int column, int row]
+    public T this[int column, int row]
     {
         get => _matrix[column, row];
         set => _matrix[column, row] = value;
     }
 
-    public static MatrixInt operator *(MatrixInt a, int scalar)
+    public static Matrix<T> operator *(Matrix<T> a, T scalar)
     {
         return Multiply(a, scalar);
     }
     
-    public static MatrixInt operator *(int scalar, MatrixInt a)
+    public static Matrix<T> operator *(T scalar, Matrix<T> a)
     {
         return Multiply(a, scalar);
     }
     
-    public static MatrixInt operator *(MatrixInt a, MatrixInt b)
+    public static Matrix<T> operator *(Matrix<T> a, Matrix<T> b)
     {
         return Multiply(a, b);
     }
     
-    public static bool operator ==(MatrixInt a, MatrixInt b)
+    public static bool operator ==(Matrix<T> a, Matrix<T> b)
     {
         if ((a.ColumnCount != b.ColumnCount) || (a.RowCount != b.RowCount)) return false;
 
@@ -56,22 +58,22 @@ public partial class MatrixInt
         return true;
     }
 
-    public static bool operator !=(MatrixInt a, MatrixInt b)
+    public static bool operator !=(Matrix<T> a, Matrix<T> b)
     {
         return !(a == b);
     }
 
-    public static MatrixInt operator -(MatrixInt a)
+    public static Matrix<T> operator -(Matrix<T> a)
     {
-        return Multiply(a, -1);
+        return Multiply(a, -T.One);
     }
     
-    public static MatrixInt operator +(MatrixInt a, MatrixInt b)
+    public static Matrix<T> operator +(Matrix<T> a, Matrix<T> b)
     {
         return Add(a, b);
     }
     
-    public static MatrixInt operator -(MatrixInt a, MatrixInt b)
+    public static Matrix<T> operator -(Matrix<T> a, Matrix<T> b)
     {
         return Add(a, -b);
     }

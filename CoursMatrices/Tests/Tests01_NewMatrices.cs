@@ -6,7 +6,7 @@
         [Test]
         public void TestNewEmptyMatrices()
         {
-            MatrixInt m1 = new MatrixInt(3, 2);
+            MatrixInt m1 = new(3, 2);
             MatrixInt m2 = new(2, 3);
             
             Assert.Multiple(() =>
@@ -17,16 +17,16 @@
                 { 0, 0 },
                 { 0, 0 }
             }, Is.EqualTo(m1.ToArray2D()));
-                Assert.That(m1.ColumnCount, Is.EqualTo(3));
-                Assert.That(m1.RowCount, Is.EqualTo(2));
+                Assert.That(m1.RowCount, Is.EqualTo(3));
+                Assert.That(m1.ColumnCount, Is.EqualTo(2));
 
                 Assert.That(new[,]
                 {
                 { 0, 0, 0 },
                 { 0, 0, 0 },
             }, Is.EqualTo(m2.ToArray2D()));
-                Assert.That(m2.ColumnCount, Is.EqualTo(2));
-                Assert.That(m2.RowCount, Is.EqualTo(3));
+                Assert.That(m2.RowCount, Is.EqualTo(2));
+                Assert.That(m2.ColumnCount, Is.EqualTo(3));
             });
         }
 
@@ -35,7 +35,7 @@
         {
             //See GetLength documentation to retrieve length of a multi-dimensional array
             //https://docs.microsoft.com/en-us/dotnet/api/system.array.getlength
-            MatrixInt m = new MatrixInt(new[,]
+            MatrixInt m = new(new[,]
                 {
                     { 1, 2, 3 },
                     { 4, 5, 6 },
@@ -44,8 +44,8 @@
             );
             Assert.Multiple(() =>
             {
-                Assert.That(m.ColumnCount, Is.EqualTo(3));
                 Assert.That(m.RowCount, Is.EqualTo(3));
+                Assert.That(m.ColumnCount, Is.EqualTo(3));
 
                 //See Indexers Documentation =>
                 //https://docs.microsoft.com/fr-fr/dotnet/csharp/programming-guide/indexers/

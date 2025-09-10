@@ -6,7 +6,7 @@
         [Test]
         public void TestModifyMatrix()
         {
-            MatrixInt m = new MatrixInt(2, 2);
+            MatrixInt m = new(2, 2);
             
             
             Assert.Multiple(() =>
@@ -35,7 +35,7 @@
         [Test]
         public void TestCopyAndChangeMatrices()
         {
-            MatrixInt m1 = new MatrixInt(new[,]
+            MatrixInt m1 = new(new[,]
                 {
                     { 1, 2, 3 },
                     { 4, 5, 6 },
@@ -43,7 +43,7 @@
                 }
             );
 
-            MatrixInt m2 = new MatrixInt(m1);
+            MatrixInt m2 = new(m1);
             m2[0, 0] = 23;
 
             Assert.Multiple(() =>

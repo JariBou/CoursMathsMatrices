@@ -1,17 +1,17 @@
-﻿using CoursMatrices.Exceptions;
+﻿using System.Numerics;
 
-namespace CoursMatrices;
+namespace CoursMatrices.Matrices;
 
-public partial class MatrixInt : IMatrix
+public partial class Matrix<T> : IMatrix where T : INumberBase<T>, new()
 {
     private readonly int _columnCount;
     private readonly int _rowCount;
-    private readonly int[,] _matrix;
+    private readonly T[,] _matrix;
     
     public int ColumnCount => _columnCount;
     public int RowCount => _rowCount;
 
-    public MatrixInt(int rowCount, int columnCount)
+    public Matrix(int rowCount, int columnCount)
     {
         if (columnCount < 1 || rowCount < 1)
         {
@@ -20,22 +20,22 @@ public partial class MatrixInt : IMatrix
 
         _columnCount = columnCount;
         _rowCount = rowCount;
-        _matrix = new int[_rowCount, _columnCount];
+        _matrix = new T[_rowCount, _columnCount];
     }
 
-    public MatrixInt(int[,]  matrix)
+    public Matrix(T[,]  matrix)
     {
         _rowCount = matrix.GetLength(0);        
         _columnCount = matrix.GetLength(1);
-        _matrix = new int[_rowCount, _columnCount];
+        _matrix = new T[_rowCount, _columnCount];
         Array.Copy(matrix, _matrix, matrix.Length);
     }
 
-    public MatrixInt(MatrixInt target) : this(target._matrix)
+    public Matrix(Matrix<T> target) : this(target._matrix)
     {
     }
 
-    public int[,] ToArray2D()
+    public T[,] ToArray2D()
     {
         return _matrix;
     }
@@ -46,24 +46,24 @@ public partial class MatrixInt : IMatrix
         return this == Identity(_columnCount);
     }
     
-    public static MatrixInt Identity(int size)
+    public static Matrix<T> Identity(int size)
     {
-        MatrixInt matrixInt = new(size, size);
+        Matrix<T> matrixInt = new(size, size);
         for (int i = 0; i < size; i++)
         {
-            matrixInt[i, i] = 1;
+            matrixInt[i, i] = T.One;
         }
         return matrixInt;
     }
 
-    public MatrixInt Transpose()
+    public Matrix<T> Transpose()
     {
         return Transpose(this);
     }
 
-    public static MatrixInt Transpose(MatrixInt matrix)
+    public static Matrix<T> Transpose(Matrix<T> matrix)
     {
-        MatrixInt transposedMatrix = new(matrix.ColumnCount, matrix.RowCount);
+        Matrix<T> transposedMatrix = new(matrix.ColumnCount, matrix.RowCount);
 
         for (int i = 0; i < matrix.RowCount; i++)
         {

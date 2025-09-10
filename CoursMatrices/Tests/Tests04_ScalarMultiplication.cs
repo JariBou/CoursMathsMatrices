@@ -6,7 +6,7 @@
         [Test]
         public void TestScalarMultiplicationInstance()
         {
-            MatrixInt m = new MatrixInt(new[,]
+            MatrixInt m = new(new[,]
             {
                 { 1, 2, 3 },
                 { 4, 5, 6 },
@@ -26,7 +26,7 @@
         [Test]
         public void TestScalarMultiplicationStatic()
         {
-            MatrixInt m = new MatrixInt(new[,]
+            MatrixInt m = new(new[,]
             {
                 { 0, 0, 0 },
                 { 0, 5, 0 },
@@ -53,7 +53,7 @@
         [Test]
         public void TestScalarMultiplicationOperator()
         {
-            MatrixInt m = new MatrixInt(new[,]
+            MatrixInt m = new(new[,]
             {
                 { 1, 2, 3 },
                 { 4, 5, 6 },
@@ -91,7 +91,7 @@
         [Test]
         public void TestNegativeMatrix()
         {
-            MatrixInt m1 = new MatrixInt(new int[,]
+            MatrixInt m1 = new(new int[,]
             {
                 { -1, 2, 3 },
                 { 4, -5, 6 },

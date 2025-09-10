@@ -37,29 +37,29 @@
         [Test]
         public void TestMatricesIsIdentity()
         {
-            MatrixInt identity2 = new MatrixInt(new[,]
+            MatrixInt identity2 = new(new[,]
             {
                 { 1, 0 },
                 { 0, 1 }
             });
-            MatrixInt identity3 = new MatrixInt(new[,]
+            MatrixInt identity3 = new(new[,]
             {
                 { 1, 0, 0 },
                 { 0, 1, 0 },
                 { 0, 0, 1 }
             });
-            MatrixInt notSameColumnsAndLines = new MatrixInt(new[,]
+            MatrixInt notSameColumnsAndLines = new(new[,]
             {
                 { 1, 0, 0 },
                 { 0, 1, 0 }
             });
-            MatrixInt notIdentity1 = new MatrixInt(new[,]
+            MatrixInt notIdentity1 = new(new[,]
             {
                 { 1, 0, 0 },
                 { 0, 2, 0 },
                 { 0, 0, 3 },
             });
-            MatrixInt notIdentity2 = new MatrixInt(new[,]
+            MatrixInt notIdentity2 = new(new[,]
             {
                 { 1, 0, 4 },
                 { 0, 1, 0 },
