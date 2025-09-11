@@ -1,7 +1,6 @@
 ﻿using CoursMatrices.Matrices.Generic;
-using NUnit.Framework;
 
-namespace Maths_Matrices.Tests
+namespace CoursMatrices.Tests.TestsGeneric
 {
     [TestFixture]
     public class Tests10_RowReductionGeneric
@@ -26,7 +25,7 @@ namespace Maths_Matrices.Tests
             //This method use deconstruction tuple system
             //More information here =>
             //https://docs.microsoft.com/fr-fr/dotnet/csharp/fundamentals/functional/deconstruct
-            (m1, m2) = MatrixRowReductionAlgorithm.Apply(m1, m2);
+            (m1, m2) = MatrixOperations.RowReduction(m1, m2);
             Assert.That(new[,]
             {
                 { 1f, 0f, 0f },
@@ -62,7 +61,7 @@ namespace Maths_Matrices.Tests
             //This method use deconstruction tuple system
             //More information here =>
             //https://docs.microsoft.com/fr-fr/dotnet/csharp/fundamentals/functional/deconstruct
-            (m1, m2) = MatrixRowReductionAlgorithm.Apply(m1, m2);
+            (m1, m2) = MatrixOperations.RowReduction(m1, m2);
             Assert.That(new[,]
             {
                 { 1f, 0f, 2f },

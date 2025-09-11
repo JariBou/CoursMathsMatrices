@@ -41,4 +41,14 @@ public partial class Matrix<T>
         
         return this;
     }
+
+    public Matrix<float> InvertByRowReduction()
+    {
+        return MatrixOperations.InvertByRowReduction(this);
+    }
+
+    public float Determinant()
+    {
+        return MatrixOperations.Determinant(this);
+    }
 }

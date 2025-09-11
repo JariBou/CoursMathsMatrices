@@ -2,6 +2,6 @@
 
 namespace CoursMatrices.Exceptions;
 
-public class MatrixScalarZeroException([CallerMemberName] string? operationName = "") : Exception($"Invalid multiplication by 0 on '{operationName}'")
+public sealed class MatrixScalarZeroException([CallerMemberName] string? operationName = "") : Exception($"Invalid multiplication by 0 on '{operationName}'")
 {
 }

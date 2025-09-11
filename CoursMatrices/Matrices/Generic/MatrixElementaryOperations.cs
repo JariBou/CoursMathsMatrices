@@ -3,7 +3,7 @@ using CoursMatrices.Exceptions;
 
 namespace CoursMatrices.Matrices.Generic;
 
-public class MatrixElementaryOperations
+public static partial class MatrixOperations
 {
     public static void SwapLines<T>(Matrix<T> matrix, int l1, int l2) where T : INumber<T>, new()
     {

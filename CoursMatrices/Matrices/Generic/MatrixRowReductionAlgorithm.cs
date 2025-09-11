@@ -2,13 +2,11 @@
 
 namespace CoursMatrices.Matrices.Generic;
 
-public class MatrixRowReductionAlgorithm
+public static partial class MatrixOperations
 {
-    public static (Matrix<float> result1, Matrix<float> result2) Apply(Matrix<float> m1, Matrix<float> m2) /*where T : INumber<T>, new()*/
+    public static (Matrix<float> result1, Matrix<float> result2) RowReduction(Matrix<float> m1, Matrix<float> m2)
     {
-        // throw new NotImplementedException();
-
-        Matrix<float> result = MatrixOperations.GenerateAugmentedMatrix(m1, m2);
+        Matrix<float> result = GenerateAugmentedMatrix(m1, m2);
 
         int i = 0;
         for (int j = 0; j < m1.ColumnCount; j++)
@@ -33,8 +31,6 @@ public class MatrixRowReductionAlgorithm
                 {
                     (result[i, column], result[k, column]) = (result[k, column], result[j, column]);
                 }
-                // MatrixElementaryOperations.SwapLines(result, k, i);
-                // MatrixElementaryOperations.SwapLines(m2, k, i);
             }
         
             float scalar = 1f/result[i, j];
@@ -42,8 +38,6 @@ public class MatrixRowReductionAlgorithm
             {
                 result[i, column] *= scalar;
             }
-            // MatrixElementaryOperations.MultiplyLine(result, i, scalar);
-            // MatrixElementaryOperations.MultiplyLine(m2, i, scalar);
         
             for (int row = 0; row < m1.RowCount; row++)
             {
@@ -53,8 +47,6 @@ public class MatrixRowReductionAlgorithm
                 {
                     result[row, column] += result[i, column] * -1 *cache;
                 }
-                // MatrixElementaryOperations.AddLineToAnother(result, i, row, -1*result[row, j]);
-                // MatrixElementaryOperations.AddLineToAnother(m2, i, row, -1*m1[row, j]);
             }
 
             i++;

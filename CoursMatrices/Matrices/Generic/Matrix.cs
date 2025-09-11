@@ -35,6 +35,19 @@ public partial class Matrix<T> : IMatrix where T : INumber<T>, new()
 
     public Matrix(Matrix<T> target) : this(target._matrix) { }
 
+    public Matrix<TTarget> ConvertTo<TTarget>() where TTarget : INumber<TTarget>, new()
+    {
+        Matrix<TTarget> result =  new Matrix<TTarget>(RowCount, ColumnCount);
+        for (int i = 0; i < RowCount; i++)
+        {
+            for (int j = 0; j < ColumnCount; j++)
+            {
+                result[i, j] = TTarget.CreateChecked(_matrix[i, j]);
+            }
+        }
+        return result;
+    }
+
     public T[,] ToArray2D()
     {
         return _matrix;
@@ -168,5 +181,27 @@ public partial class Matrix<T> : IMatrix where T : INumber<T>, new()
         }
         
         return (result1, result2);
+    }
+
+    public Matrix<T> SubMatrix(int line, int column)
+    {
+        var matrix = new Matrix<T>(RowCount-1, ColumnCount-1);
+        int rowIndex = 0;
+        for (int i = 0; i < RowCount; i++)
+        {
+            if (i == line) continue;
+            int columnIndex = 0;
+            for (int j = 0; j < ColumnCount; j++)
+            {
+                if (j == column) continue;
+                
+                matrix[rowIndex, columnIndex] = this[i, j];
+                
+                columnIndex++;
+            }
+            rowIndex++;
+        }
+        
+        return matrix;
     }
 }
