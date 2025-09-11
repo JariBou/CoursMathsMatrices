@@ -1,9 +1,9 @@
 ﻿using CoursMatrices.Exceptions;
 using CoursMatrices.Matrices;
 
-namespace CoursMatrices.Tests;
+namespace CoursMatrices;
 
-public class MatrixElementaryOperations
+public class MatrixIntElementaryOperations
 {
     public static void SwapLines(MatrixInt matrix, int l1, int l2)
     {

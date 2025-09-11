@@ -18,7 +18,7 @@ namespace CoursMatrices.Tests
                 { 7, 8, 9 }
             });
 
-            MatrixElementaryOperations.SwapLines(m, 0, 1);
+            MatrixIntElementaryOperations.SwapLines(m, 0, 1);
             Assert.That(new[,]
             {
                 { 4, 5, 6 },
@@ -26,7 +26,7 @@ namespace CoursMatrices.Tests
                 { 7, 8, 9 }
             }, Is.EqualTo(m.ToArray2D()));
 
-            MatrixElementaryOperations.SwapLines(m, 0, 2);
+            MatrixIntElementaryOperations.SwapLines(m, 0, 2);
             Assert.That(new[,]
             {
                 { 7, 8, 9 },
@@ -34,7 +34,7 @@ namespace CoursMatrices.Tests
                 { 4, 5, 6 }
             }, Is.EqualTo(m.ToArray2D()));
 
-            MatrixElementaryOperations.SwapLines(m, 2, 1);
+            MatrixIntElementaryOperations.SwapLines(m, 2, 1);
             Assert.That(new[,]
             {
                 { 7, 8, 9 },
@@ -53,7 +53,7 @@ namespace CoursMatrices.Tests
                 { 3, 6, 9 }
             });
         
-            MatrixElementaryOperations.SwapColumns(m, 0, 1);
+            MatrixIntElementaryOperations.SwapColumns(m, 0, 1);
             Assert.That(new[,]
             {
                 { 4, 1, 7 },
@@ -61,7 +61,7 @@ namespace CoursMatrices.Tests
                 { 6, 3, 9 }
             }, Is.EqualTo(m.ToArray2D()));
         
-            MatrixElementaryOperations.SwapColumns(m, 0, 2);
+            MatrixIntElementaryOperations.SwapColumns(m, 0, 2);
             Assert.That(new[,]
             {
                 { 7, 1, 4 },
@@ -69,7 +69,7 @@ namespace CoursMatrices.Tests
                 { 9, 3, 6 }
             }, Is.EqualTo(m.ToArray2D()));
         
-            MatrixElementaryOperations.SwapColumns(m, 2, 1);
+            MatrixIntElementaryOperations.SwapColumns(m, 2, 1);
             Assert.That(new[,]
             {
                 { 7, 4, 1 },
@@ -92,7 +92,7 @@ namespace CoursMatrices.Tests
                 { 7, 8, 9 }
             });
         
-            MatrixElementaryOperations.MultiplyLine(m, 0, 2);
+            MatrixIntElementaryOperations.MultiplyLine(m, 0, 2);
             Assert.That(new[,]
             {
                 { 2, 4, 6 },
@@ -100,7 +100,7 @@ namespace CoursMatrices.Tests
                 { 7, 8, 9 }
             }, Is.EqualTo(m.ToArray2D()));
         
-            MatrixElementaryOperations.MultiplyLine(m, 1, 3);
+            MatrixIntElementaryOperations.MultiplyLine(m, 1, 3);
             Assert.That(new[,]
             {
                 { 2, 4, 6 },
@@ -108,7 +108,7 @@ namespace CoursMatrices.Tests
                 { 7, 8, 9 }
             }, Is.EqualTo(m.ToArray2D()));
         
-            MatrixElementaryOperations.MultiplyLine(m, 2, 10);
+            MatrixIntElementaryOperations.MultiplyLine(m, 2, 10);
             Assert.That(new[,]
             {
                 { 2, 4, 6 },
@@ -118,7 +118,7 @@ namespace CoursMatrices.Tests
             
             Assert.Throws<MatrixScalarZeroException>(() =>
             {
-                MatrixElementaryOperations.MultiplyLine(m, 0, 0);
+                MatrixIntElementaryOperations.MultiplyLine(m, 0, 0);
             });
         }
         
@@ -132,7 +132,7 @@ namespace CoursMatrices.Tests
                 { 3, 6, 9 }
             });
         
-            MatrixElementaryOperations.MultiplyColumn(m, 0, 2);
+            MatrixIntElementaryOperations.MultiplyColumn(m, 0, 2);
             Assert.That(new[,]
             {
                 { 2, 4, 7 },
@@ -140,7 +140,7 @@ namespace CoursMatrices.Tests
                 { 6, 6, 9 }
             }, Is.EqualTo(m.ToArray2D()));
         
-            MatrixElementaryOperations.MultiplyColumn(m, 1, 3);
+            MatrixIntElementaryOperations.MultiplyColumn(m, 1, 3);
             Assert.That(new[,]
             {
                 { 2, 12, 7 },
@@ -148,7 +148,7 @@ namespace CoursMatrices.Tests
                 { 6, 18, 9 }
             }, Is.EqualTo(m.ToArray2D()));
         
-            MatrixElementaryOperations.MultiplyColumn(m, 2, 10);
+            MatrixIntElementaryOperations.MultiplyColumn(m, 2, 10);
             Assert.That(new[,]
             {
                 { 2, 12, 70 },
@@ -158,7 +158,7 @@ namespace CoursMatrices.Tests
             
             Assert.Throws<MatrixScalarZeroException>(() =>
             {
-                MatrixElementaryOperations.MultiplyColumn(m, 0, 0);
+                MatrixIntElementaryOperations.MultiplyColumn(m, 0, 0);
             });
         }
         
@@ -176,7 +176,7 @@ namespace CoursMatrices.Tests
                 { 7, 8, 9 }
             });
         
-            MatrixElementaryOperations.AddLineToAnother(m, 1, 0, 2);
+            MatrixIntElementaryOperations.AddLineToAnother(m, 1, 0, 2);
             Assert.That(new[,]
             {
                 { 9, 12, 15 },
@@ -195,7 +195,7 @@ namespace CoursMatrices.Tests
                 { 3, 6, 9 }
             });
         
-            MatrixElementaryOperations.AddColumnToAnother(m, 1, 0, 2);
+            MatrixIntElementaryOperations.AddColumnToAnother(m, 1, 0, 2);
             Assert.That(new[,]
             {
                 { 9, 4, 7 },

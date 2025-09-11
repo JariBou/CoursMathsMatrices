@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using CoursMatrices.Exceptions;
 using CoursMatrices.Interfaces;
 
 namespace CoursMatrices.Matrices.Generic;
@@ -39,10 +40,10 @@ public partial class Matrix<T> : IMatrix where T : INumber<T>, new()
         return _matrix;
     }
     
-    public T this[int column, int row]
+    public T this[int row, int column]
     {
-        get => _matrix[column, row];
-        set => _matrix[column, row] = value;
+        get => _matrix[row, column];
+        set => _matrix[row, column] = value;
     }
     
     public bool IsIdentity()
@@ -79,5 +80,93 @@ public partial class Matrix<T> : IMatrix where T : INumber<T>, new()
         }
         
         return transposedMatrix;
+    }
+
+    public T[] GetRow(int rowIndex)
+    {
+        if (rowIndex < 0 || rowIndex >= RowCount)
+        {
+            throw new ArgumentOutOfRangeException(nameof(rowIndex));
+        }
+        
+        T[] row = new T[ColumnCount];
+        for (int i = 0; i < ColumnCount; i++)
+        {
+            row[i] = this[rowIndex, i];
+        }
+        
+        return row;
+    }
+    
+    public void SetRow(int rowIndex, T[] values)
+    {
+        if (rowIndex < 0 || rowIndex >= RowCount)
+        {
+            throw new ArgumentOutOfRangeException(nameof(rowIndex));
+        }
+
+        if (values.Length < ColumnCount)
+        {
+            throw new Exception($"Expected array of size {ColumnCount} but got {values.Length}.");
+        }
+        
+        for (int i = 0; i < ColumnCount; i++)
+        {
+            this[rowIndex, i] = values[i];
+        }
+    }
+    
+    public T[] GetColumn(int columnIndex)
+    {
+        if (columnIndex < 0 || columnIndex >= ColumnCount)
+        {
+            throw new ArgumentOutOfRangeException(nameof(columnIndex));
+        }
+        
+        T[] column = new T[RowCount];
+        for (int i = 0; i < RowCount; i++)
+        {
+            column[i] = this[i, columnIndex];
+        }
+        
+        return column;
+    }
+    
+    public void SetColumn(int columnIndex, T[] values)
+    {
+        if (columnIndex < 0 || columnIndex >= ColumnCount)
+        {
+            throw new ArgumentOutOfRangeException(nameof(columnIndex));
+        }
+        
+        if (values.Length < RowCount)
+        {
+            throw new Exception($"Expected array of size {RowCount} but got {values.Length}.");
+        }
+        
+        for (int i = 0; i < RowCount; i++)
+        {
+            this[i, columnIndex] = values[i];
+        }
+    }
+
+    public (Matrix<T> m1, Matrix<T> m2) Split(int splitIndex)
+    {
+        if (splitIndex < 0 || splitIndex >= ColumnCount) throw new ArgumentOutOfRangeException(nameof(splitIndex));
+        int splitValue = splitIndex+1;
+        Matrix<T> result1 = new(RowCount, splitValue);
+        Matrix<T> result2 = new(RowCount, ColumnCount- splitValue);
+
+        for (int i = 0; i <= splitIndex; i++)
+        {
+            result1.SetColumn(i, GetColumn(i));
+        }
+
+        for (int i = splitValue; i < ColumnCount; i++)
+        {
+            result2.SetColumn(i - splitValue, GetColumn(i));
+        }
+        
+        return (result1, result2);
     }
 }

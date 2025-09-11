@@ -1,7 +1,6 @@
-﻿using CoursMatrices.Matrices;
-using CoursMatrices.Matrices.Generic;
+﻿using CoursMatrices.Matrices.Generic;
 
-namespace CoursMatrices.TestsGeneric
+namespace CoursMatrices.Tests.TestsGeneric
 {
     [TestFixture]
     public class Tests02_CopyAndModifyMatricesGeneric

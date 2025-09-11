@@ -49,4 +49,17 @@ public static class MatrixOperations
         
         return result;
     }
+    
+    public static Matrix<T> GenerateAugmentedMatrix<T>(Matrix<T> m1, Matrix<T> m2) where T : INumber<T>, new()
+    {
+        if (m1.RowCount != m2.RowCount || m2.ColumnCount != 1) throw new MatrixSizeOperationException(m1, m2);
+        Matrix<T> augmentedMatrix = new(m1.RowCount, m1.ColumnCount+1);
+        for (int i = 0; i < m1.ColumnCount; i++)
+        {
+            augmentedMatrix.SetColumn(i, m1.GetColumn(i));
+        }
+        augmentedMatrix.SetColumn(augmentedMatrix.ColumnCount-1, m2.GetColumn(0));
+        
+        return augmentedMatrix;
+    }
 }
