@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using CoursMatrices.Interfaces;
 
 namespace CoursMatrices.Exceptions;
 

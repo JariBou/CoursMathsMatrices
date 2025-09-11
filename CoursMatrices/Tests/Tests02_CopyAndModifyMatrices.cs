@@ -1,4 +1,6 @@
-﻿namespace CoursMatrices.Tests
+﻿using CoursMatrices.Matrices;
+
+namespace CoursMatrices.Tests
 {
     [TestFixture]
     public class Tests02_CopyAndModifyMatrices

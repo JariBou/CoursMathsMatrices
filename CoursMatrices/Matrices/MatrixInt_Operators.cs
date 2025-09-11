@@ -1,4 +1,4 @@
-﻿namespace CoursMatrices;
+﻿namespace CoursMatrices.Matrices;
 
 public partial class MatrixInt
 {
@@ -20,10 +20,10 @@ public partial class MatrixInt
         return HashCode.Combine(_columnCount, _rowCount, _matrix);
     }
 
-    public int this[int column, int row]
+    public int this[int row, int column]
     {
-        get => _matrix[column, row];
-        set => _matrix[column, row] = value;
+        get => _matrix[row, column];
+        set => _matrix[row, column] = value;
     }
 
     public static MatrixInt operator *(MatrixInt a, int scalar)

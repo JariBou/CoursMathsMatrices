@@ -1,4 +1,6 @@
-﻿namespace CoursMatrices.Tests
+﻿using CoursMatrices.Matrices;
+
+namespace CoursMatrices.Tests
 {
     [TestFixture]
     public class Tests04_ScalarMultiplication
@@ -35,19 +37,22 @@
 
             MatrixInt m2 = MatrixInt.Multiply(m, 5);
 
-            Assert.That(new[,]
+            Assert.Multiple(() =>
             {
+                Assert.That(new[,]
+                        {
                 { 0, 0, 0 },
                 { 0, 25, 0 },
                 { 0, 0, 0 },
             }, Is.EqualTo(m2.ToArray2D()));
 
-            Assert.That(new[,]
-            {
+                Assert.That(new[,]
+                {
                 { 0, 0, 0 },
                 { 0, 5, 0 },
                 { 0, 0, 0 },
             }, Is.EqualTo(m.ToArray2D()));
+            });
         }
 
         [Test]
@@ -64,19 +69,22 @@
             //https://docs.microsoft.com/fr-fr/dotnet/csharp/language-reference/operators/operator-overloading
             MatrixInt m2 = m * 2;
 
-            Assert.That(new[,]
+            Assert.Multiple(() =>
             {
+                Assert.That(new[,]
+                        {
                 { 2, 4, 6 },
                 { 8, 10, 12 },
                 { 14, 16, 18 },
             }, Is.EqualTo(m2.ToArray2D()));
 
-            Assert.That(new[,]
-            {
+                Assert.That(new[,]
+                {
                 { 1, 2, 3 },
                 { 4, 5, 6 },
                 { 7, 8, 9 }
             }, Is.EqualTo(m.ToArray2D()));
+            });
 
             MatrixInt m4 = 4 * m;
 

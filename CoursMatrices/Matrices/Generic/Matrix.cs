@@ -1,6 +1,7 @@
 ﻿using System.Numerics;
+using CoursMatrices.Interfaces;
 
-namespace CoursMatrices.Matrices;
+namespace CoursMatrices.Matrices.Generic;
 
 public partial class Matrix<T> : IMatrix where T : INumber<T>, new()
 {

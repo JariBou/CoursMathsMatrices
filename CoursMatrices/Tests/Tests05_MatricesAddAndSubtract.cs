@@ -1,4 +1,5 @@
 ﻿using CoursMatrices.Exceptions;
+using CoursMatrices.Matrices;
 
 namespace CoursMatrices.Tests
 {
@@ -45,14 +46,14 @@ namespace CoursMatrices.Tests
         [Test]
         public void TestSumMatricesStatic()
         {
-            MatrixInt m1 = new MatrixInt(new[,]
+            MatrixInt m1 = new(new[,]
             {
                 { 1, 7 },
                 { 8, 5 },
                 { 4, 17 }
             });
 
-            MatrixInt m2 = new MatrixInt(new[,]
+            MatrixInt m2 = new(new[,]
             {
                 { 65, 4 },
                 { 3, 1 },
@@ -89,14 +90,14 @@ namespace CoursMatrices.Tests
         [Test]
         public void TestSumMatricesOperator()
         {
-            MatrixInt m1 = new MatrixInt(new[,]
+            MatrixInt m1 = new(new[,]
             {
                 { 1, 7 },
                 { 8, 5 },
                 { 4, 17 }
             });
 
-            MatrixInt m2 = new MatrixInt(new[,]
+            MatrixInt m2 = new(new[,]
             {
                 { 65, 4 },
                 { 3, 1 },
@@ -133,14 +134,14 @@ namespace CoursMatrices.Tests
         [Test]
         public void TestSubtractMatricesOperator()
         {
-            MatrixInt m1 = new MatrixInt(new[,]
+            MatrixInt m1 = new(new[,]
             {
                 { 1, 62 },
                 { 17, 2 },
                 { 3, 5 },
             });
 
-            MatrixInt m2 = new MatrixInt(new[,]
+            MatrixInt m2 = new(new[,]
             {
                 {-3, 51},
                 {9, 1},
@@ -160,13 +161,13 @@ namespace CoursMatrices.Tests
         [Test]
         public void TestImpossibleSumMatrices()
         {
-            MatrixInt m1 = new MatrixInt(new[,]
+            MatrixInt m1 = new(new[,]
             {
                 { 3, 4 },
                 { 8, 5 },
             });
 
-            MatrixInt m2 = new MatrixInt(new[,]
+            MatrixInt m2 = new(new[,]
             {
                 { 1, 7 },
                 { 7, 4 },

@@ -1,5 +1,6 @@
 ﻿using CoursMatrices.Exceptions;
 using CoursMatrices.Matrices;
+using CoursMatrices.Matrices.Generic;
 
 namespace CoursMatrices.TestsGeneric
 {

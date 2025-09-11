@@ -1,6 +1,6 @@
 ﻿using CoursMatrices.Exceptions;
 
-namespace CoursMatrices;
+namespace CoursMatrices.Matrices;
 
 public partial class MatrixInt
 {
@@ -54,7 +54,7 @@ public partial class MatrixInt
             throw new MatrixSizeOperationException(matrix, matrix2);
         }
 
-        MatrixInt result = new MatrixInt(matrix.RowCount, matrix2.ColumnCount);
+        MatrixInt result = new(matrix.RowCount, matrix2.ColumnCount);
 
         for (int i = 0; i < result.RowCount; i++)
         {

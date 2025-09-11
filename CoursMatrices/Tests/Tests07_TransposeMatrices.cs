@@ -1,4 +1,6 @@
-﻿namespace CoursMatrices.Tests
+﻿using CoursMatrices.Matrices;
+
+namespace CoursMatrices.Tests
 {
     [TestFixture]
     public class Tests07_TransposeMatrices
@@ -6,7 +8,7 @@
         [Test]
         public void TestTransposeMatrixInstance()
         {
-            MatrixInt m1 = new MatrixInt(new[,]
+            MatrixInt m1 = new(new[,]
             {
                 { 1, 2, 3 },
                 { 4, 5, 6 }
@@ -25,7 +27,7 @@
         [Test]
         public void TestTransposeMatrixStatic()
         {
-            MatrixInt m1 = new MatrixInt(new[,]
+            MatrixInt m1 = new(new[,]
             {
                 { 1, 2, 3 },
                 { 4, 5, 6 }

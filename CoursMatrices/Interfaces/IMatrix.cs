@@ -1,4 +1,4 @@
-﻿namespace CoursMatrices;
+﻿namespace CoursMatrices.Interfaces;
 
 public interface IMatrix
 {
