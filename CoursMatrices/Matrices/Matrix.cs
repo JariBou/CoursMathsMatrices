@@ -2,7 +2,7 @@
 
 namespace CoursMatrices.Matrices;
 
-public partial class Matrix<T> : IMatrix where T : INumberBase<T>, new()
+public partial class Matrix<T> : IMatrix where T : INumber<T>, new()
 {
     private readonly int _columnCount;
     private readonly int _rowCount;
@@ -31,13 +31,17 @@ public partial class Matrix<T> : IMatrix where T : INumberBase<T>, new()
         Array.Copy(matrix, _matrix, matrix.Length);
     }
 
-    public Matrix(Matrix<T> target) : this(target._matrix)
-    {
-    }
+    public Matrix(Matrix<T> target) : this(target._matrix) { }
 
     public T[,] ToArray2D()
     {
         return _matrix;
+    }
+    
+    public T this[int column, int row]
+    {
+        get => _matrix[column, row];
+        set => _matrix[column, row] = value;
     }
     
     public bool IsIdentity()

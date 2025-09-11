@@ -22,25 +22,19 @@ public partial class  Matrix<T>
         return HashCode.Combine(_columnCount, _rowCount, _matrix);
     }
 
-    public T this[int column, int row]
-    {
-        get => _matrix[column, row];
-        set => _matrix[column, row] = value;
-    }
-
     public static Matrix<T> operator *(Matrix<T> a, T scalar)
     {
-        return Multiply(a, scalar);
-    }
+        return MatrixOperations.Multiply(a, scalar);
+    } 
     
     public static Matrix<T> operator *(T scalar, Matrix<T> a)
     {
-        return Multiply(a, scalar);
+        return MatrixOperations.Multiply(a, scalar);
     }
     
     public static Matrix<T> operator *(Matrix<T> a, Matrix<T> b)
     {
-        return Multiply(a, b);
+        return MatrixOperations.Multiply(a, b);
     }
     
     public static bool operator ==(Matrix<T> a, Matrix<T> b)
@@ -65,16 +59,16 @@ public partial class  Matrix<T>
 
     public static Matrix<T> operator -(Matrix<T> a)
     {
-        return Multiply(a, -T.One);
+        return MatrixOperations.Multiply(a, -T.One);
     }
     
     public static Matrix<T> operator +(Matrix<T> a, Matrix<T> b)
     {
-        return Add(a, b);
+        return MatrixOperations.Add(a, b);
     }
     
     public static Matrix<T> operator -(Matrix<T> a, Matrix<T> b)
     {
-        return Add(a, -b);
+        return MatrixOperations.Add(a, -b);
     }
 }
