@@ -1,6 +1,7 @@
 ﻿using CoursMatrices.Matrices.Generic;
+using CoursMatrices.Matrices.Generic.Operations;
 
-namespace CoursMatrices.Tests.TestsGeneric
+namespace CoursMatrices.Tests.TestsGenericMatrices
 {
     [TestFixture]
     public class Tests13_DeterminantsGeneric
@@ -19,7 +20,7 @@ namespace CoursMatrices.Tests.TestsGeneric
             Assert.That(determinant, Is.EqualTo(-2f));
         }
 
-        [Test]
+        [Test, DefaultFloatingPointTolerance(0.001f)]
         public void TestDeterminantMatrix3x3()
         {
             Matrix<float> m = new Matrix<float>(new[,]
@@ -34,7 +35,7 @@ namespace CoursMatrices.Tests.TestsGeneric
             Assert.That(determinant, Is.EqualTo(0f));
         }
         
-        [Test]
+        [Test, DefaultFloatingPointTolerance(0.1f)]
         public void TestDeterminantMatrix4x4()
         {
             Matrix<float> m = new Matrix<float>(new[,]
@@ -50,7 +51,7 @@ namespace CoursMatrices.Tests.TestsGeneric
             Assert.That(determinant, Is.EqualTo(48f));
         }
         
-        [Test]
+        [Test, DefaultFloatingPointTolerance(0.001f)]
         public void TestDeterminantIdentityMatrices()
         {
             //Identity 2

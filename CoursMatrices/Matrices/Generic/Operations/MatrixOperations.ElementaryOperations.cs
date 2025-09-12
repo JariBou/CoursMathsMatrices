@@ -1,7 +1,7 @@
 ﻿using System.Numerics;
 using CoursMatrices.Exceptions;
 
-namespace CoursMatrices.Matrices.Generic;
+namespace CoursMatrices.Matrices.Generic.Operations;
 
 public static partial class MatrixOperations
 {

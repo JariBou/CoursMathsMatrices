@@ -1,4 +1,6 @@
-﻿namespace CoursMatrices.Matrices.Generic;
+﻿using CoursMatrices.Matrices.Generic.Operations;
+
+namespace CoursMatrices.Matrices.Generic;
 
 public partial class  Matrix<T>
 {

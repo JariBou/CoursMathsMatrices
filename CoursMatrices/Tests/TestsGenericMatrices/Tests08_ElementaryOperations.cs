@@ -1,7 +1,8 @@
 ﻿using CoursMatrices.Exceptions;
 using CoursMatrices.Matrices.Generic;
+using CoursMatrices.Matrices.Generic.Operations;
 
-namespace CoursMatrices.Tests.TestsGeneric
+namespace CoursMatrices.Tests.TestsGenericMatrices
 {
     [TestFixture]
     public class Tests08_ElementaryOperationsGeneric

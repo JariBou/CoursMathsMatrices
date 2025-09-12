@@ -185,6 +185,11 @@ public partial class Matrix<T> : IMatrix where T : INumber<T>, new()
 
     public Matrix<T> SubMatrix(int line, int column)
     {
+        if (line > RowCount || column > ColumnCount || RowCount <= 1 || ColumnCount <= 1)
+        {
+            throw new MatrixSizeOperationException(this);
+        }
+        
         var matrix = new Matrix<T>(RowCount-1, ColumnCount-1);
         int rowIndex = 0;
         for (int i = 0; i < RowCount; i++)

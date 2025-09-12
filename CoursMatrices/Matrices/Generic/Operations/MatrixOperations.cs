@@ -1,7 +1,7 @@
 ﻿using System.Numerics;
 using CoursMatrices.Exceptions;
 
-namespace CoursMatrices.Matrices.Generic;
+namespace CoursMatrices.Matrices.Generic.Operations;
 
 public static partial class MatrixOperations
 {
@@ -69,53 +69,7 @@ public static partial class MatrixOperations
     
     public static Matrix<float> InvertByRowReduction<T>(Matrix<T> m1) where T : INumber<T>, new()
     {
-        Matrix<float> result = GenerateAugmentedMatrix(m1.ConvertTo<float>(), Matrix<float>.Identity(m1.RowCount));
-
-        int i = 0;
-        for (int j = 0; j < m1.ColumnCount; j++)
-        {
-            int k = 0;
-            double? max = null;
-    
-            for (int row = i; row < m1.RowCount; row++)
-            {
-                if ((max == null && result[row, j] != 0f) || (max != null && result[row, j] > max))
-                {
-                    max = result[row, j];
-                    k = row;
-                }
-            }
-
-            if (max is null) throw new MatrixInvertException(); 
-            
-            if (k != i)
-            {
-                for (int column = j; column < result.ColumnCount; column++)
-                {
-                    (result[i, column], result[k, column]) = (result[k, column], result[j, column]);
-                }
-            }
-        
-            float scalar = 1f/result[i, j];
-            for (int column = j; column < result.ColumnCount; column++)
-            {
-                result[i, column] *= scalar;
-            }
-        
-            for (int row = 0; row < m1.RowCount; row++)
-            {
-                if (row == i) continue;
-                float cache = result[row, j];
-                for (int column = j; column < result.ColumnCount; column++)
-                {
-                    result[row, column] += result[i, column] * -1 *cache;
-                }
-            }
-
-            i++;
-        }
-        
-        return result.Split(m1.ColumnCount-1).m2;
+        return RowReduction(m1.ConvertTo<float>(), Identity<float>(m1.RowCount), true).result2;
     }
     
     public static Matrix<T> SubMatrix<T>(Matrix<T> m, int line, int column) where T : INumber<T>, new()
@@ -129,9 +83,14 @@ public static partial class MatrixOperations
 
         Matrix<float> matrix = matrixSource.ConvertTo<float>();
         
-        int k = 1;
+        if (matrixSource.ColumnCount == 2)
+        {
+            return matrix[0, 0] * matrix[1, 1] - matrix[0, 1] * matrix[1, 0];
+        }
+        
+        int k = 0;
         float determinant = 0f;
-        for (int row = 0; row < matrix.ColumnCount; row++)
+        for (int row = 0; row < matrix.RowCount; row++)
         {
             determinant += matrix[row, k] * Cofactor(matrix, row, k);
         }
@@ -140,6 +99,46 @@ public static partial class MatrixOperations
 
     public static float Cofactor<T>(Matrix<T> matrix, int lineIndex, int columnIndex) where T : INumber<T>, new()
     {
+        if (matrix.RowCount == 1)
+        {
+            Matrix<float> convertTo = matrix.ConvertTo<float>();
+            return MathF.Pow(-1, lineIndex + columnIndex) * convertTo[0, 0];
+        }
         return MathF.Pow(-1, lineIndex + columnIndex) * matrix.SubMatrix(lineIndex, columnIndex).Determinant();
+    }
+
+    public static Matrix<float> Adjugate<T>(Matrix<T> matrix) where T : INumber<T>, new()
+    {
+        if (matrix.ColumnCount <= 1 || matrix.ColumnCount != matrix.RowCount) throw new MatrixSizeOperationException(matrix);
+        
+        Matrix<float> matrixSource = matrix.ConvertTo<float>();
+        Matrix<float> result = new(matrix.RowCount, matrix.ColumnCount);
+
+        if (matrix.RowCount == 2)
+        {
+            result[0, 0] = matrixSource[1, 1];
+            result[0, 1] = -matrixSource[0, 1];
+            
+            result[1, 0] = -matrixSource[1, 0];
+            result[1, 1] = matrixSource[0, 0];
+            
+            return result;
+        }
+        
+        for (int i = 0; i < matrixSource.RowCount; i++)
+        {
+            for (int j = 0; j < matrixSource.ColumnCount; j++)
+            {
+                result[i, j] = Cofactor(matrix, i, j);
+            }
+        }
+
+        return result.Transpose();
+    }
+
+    public static Matrix<float> InvertByDeterminant<T>(Matrix<T> matrix) where T : INumber<T>, new()
+    {
+        if (Determinant(matrix) == 0f){throw new MatrixInvertException(matrix);}
+        return 1 / Determinant(matrix) * Adjugate(matrix);
     }
 }

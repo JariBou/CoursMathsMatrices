@@ -1,5 +1,6 @@
 ﻿using System.Numerics;
 using CoursMatrices.Exceptions;
+using CoursMatrices.Matrices.Generic.Operations;
 
 namespace CoursMatrices.Matrices.Generic;
 
@@ -50,5 +51,15 @@ public partial class Matrix<T>
     public float Determinant()
     {
         return MatrixOperations.Determinant(this);
+    }
+
+    public Matrix<float> Adjugate()
+    {
+        return MatrixOperations.Adjugate(this);
+    }
+
+    public Matrix<float> InvertByDeterminant()
+    {
+        return MatrixOperations.InvertByDeterminant(this);
     }
 }

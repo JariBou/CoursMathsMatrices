@@ -1,6 +1,7 @@
 ﻿using CoursMatrices.Matrices.Generic;
+using CoursMatrices.Matrices.Generic.Operations;
 
-namespace CoursMatrices.Tests.TestsGeneric
+namespace CoursMatrices.Tests.TestsGenericMatrices
 {
     [TestFixture]
     public class Tests10_RowReductionGeneric
@@ -26,6 +27,7 @@ namespace CoursMatrices.Tests.TestsGeneric
             //More information here =>
             //https://docs.microsoft.com/fr-fr/dotnet/csharp/fundamentals/functional/deconstruct
             (m1, m2) = MatrixOperations.RowReduction(m1, m2);
+            var (m12, m22) = MatrixOperations.RowReduction2(m1, m2);
             Assert.That(new[,]
             {
                 { 1f, 0f, 0f },
@@ -39,6 +41,20 @@ namespace CoursMatrices.Tests.TestsGeneric
                 { 1f },
                 { 3f }
             }, Is.EqualTo(m2.ToArray2D()));
+            
+            Assert.That(new[,]
+            {
+                { 1f, 0f, 0f },
+                { 0f, 1f, 0f },
+                { 0f, 0f, 1f }
+            }, Is.EqualTo(m12.ToArray2D()));
+
+            Assert.That(new[,]
+            {
+                { -2f },
+                { 1f },
+                { 3f }
+            }, Is.EqualTo(m22.ToArray2D()));
         }
 
         [Test, DefaultFloatingPointTolerance(0.001f)]
@@ -62,6 +78,8 @@ namespace CoursMatrices.Tests.TestsGeneric
             //More information here =>
             //https://docs.microsoft.com/fr-fr/dotnet/csharp/fundamentals/functional/deconstruct
             (m1, m2) = MatrixOperations.RowReduction(m1, m2);
+            var (m12, m22) = MatrixOperations.RowReduction2(m1, m2);
+            
             Assert.That(new[,]
             {
                 { 1f, 0f, 2f },
@@ -75,6 +93,20 @@ namespace CoursMatrices.Tests.TestsGeneric
                 { 0f },
                 { 0f }
             }, Is.EqualTo(m2.ToArray2D()));
+            
+            Assert.That(new[,]
+            {
+                { 1f, 0f, 2f },
+                { 0f, 1f, -1f },
+                { 0f, 0f, 0f }
+            }, Is.EqualTo(m12.ToArray2D()));
+
+            Assert.That(new[,]
+            {
+                { 0f },
+                { 0f },
+                { 0f }
+            }, Is.EqualTo(m22.ToArray2D()));
         }
     }
 }
