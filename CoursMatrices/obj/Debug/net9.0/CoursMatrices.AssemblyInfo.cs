@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CoursMatrices")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+48f29fa672315f8cd2ba1a1eca1cbb45f22046c4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dd295458e42764f20575e76a839575b91359751a")]
 [assembly: System.Reflection.AssemblyProductAttribute("CoursMatrices")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CoursMatrices")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

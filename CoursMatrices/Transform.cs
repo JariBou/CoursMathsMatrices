@@ -14,6 +14,8 @@ public class Transform
     
     private Matrix<float> _localToWorldMatrix;
     private bool _localToWorldMatrixDirty;
+    private Matrix<float> _worldToLocalMatrix;
+    private bool _worldToLocalMatrixDirty;
 
     public Vector3 LocalPosition
     {
@@ -119,18 +121,10 @@ public class Transform
         }
     }
 
-    public Matrix<float> LocalToWorldMatrix
-    {
-        get
-        {
-            if (!_localToWorldMatrixDirty) return _localToWorldMatrix;
+    public Matrix<float> LocalToWorldMatrix => !_localToWorldMatrixDirty ? _localToWorldMatrix : RecalculateLocalToWorldMatrix();
 
-            return RecalculateLocalToWorldMatrix();;
-        }
-    }
+    public Matrix<float> WorldToLocalMatrix => !_worldToLocalMatrixDirty ? _worldToLocalMatrix : RecalculateWorldToLocalMatrix();
 
-    public Matrix<float> WorldToLocalMatrix => LocalToWorldMatrix.InvertByDeterminant();
-    
     #endregion
 
     public Transform()
@@ -141,6 +135,7 @@ public class Transform
         
         RecalculateRotationMatrix();
         RecalculateLocalToWorldMatrix();
+        RecalculateWorldToLocalMatrix();
     }
     
     [MemberNotNull(nameof(_localRotationMatrix))]
@@ -158,9 +153,23 @@ public class Transform
         _localToWorldMatrixDirty = false;
         return _localToWorldMatrix;
     }
+    
+    [MemberNotNull(nameof(_worldToLocalMatrix))]
+    private Matrix<float> RecalculateWorldToLocalMatrix()
+    {
+        _worldToLocalMatrix = LocalToWorldMatrix.InvertByDeterminant();
+        _worldToLocalMatrixDirty = false;
+        return _worldToLocalMatrix;
+    }
 
     private void SetLocalToWorldDirty()
     {
         _localToWorldMatrixDirty = true;
+        SetWorldToLocalDirty(); // when local to world is dirty world to local also is
+    }
+    
+    private void SetWorldToLocalDirty()
+    {
+        _worldToLocalMatrixDirty = true;
     }
 }
