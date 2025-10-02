@@ -4,7 +4,7 @@ namespace CoursMatrices.Matrices.Generic;
 
 public partial class  Matrix<T>
 {
-    protected bool Equals(Matrix<T> other)
+    private bool Equals(Matrix<T> other)
     {
         return _columnCount == other._columnCount && _rowCount == other._rowCount && _matrix.Equals(other._matrix);
     }
@@ -14,7 +14,7 @@ public partial class  Matrix<T>
         if (obj is null) return false;
         if (ReferenceEquals(this, obj)) return true;
         if (obj.GetType() != GetType()) return false;
-        return Equals((MatrixInt)obj);
+        return Equals((Matrix<T>)obj);
     }
 
     public override int GetHashCode()

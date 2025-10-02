@@ -4,7 +4,7 @@ namespace CoursMatrices.Matrices.Generic.Operations;
 
 public static partial class MatrixOperations
 {
-    public static (Matrix<float> result1, Matrix<float> result2) RowReduction(Matrix<float> m1, Matrix<float> m2, bool throwOnNullColumnValues = false)
+    public static (Matrix<float> result1, Matrix<float> result2) ExplicitRowReduction(Matrix<float> m1, Matrix<float> m2, bool throwOnNullColumnValues = false)
     {
         Matrix<float> result = GenerateAugmentedMatrix(m1, m2);
 
@@ -40,7 +40,12 @@ public static partial class MatrixOperations
                 }
             }
         
-            float scalar = 1f/result[i, j];
+            float f = result[i, j];
+            if (f == 0f)
+            {
+                f = 1f;
+            }
+            float scalar = 1f/f;
             for (int column = j; column < result.ColumnCount; column++)
             {
                 result[i, column] *= scalar;
@@ -62,7 +67,7 @@ public static partial class MatrixOperations
         return result.Split(m1.ColumnCount-1);
     }
     
-    public static (Matrix<float> result1, Matrix<float> result2) RowReduction2(Matrix<float> m1, Matrix<float> m2, bool throwOnNullColumnValues = false)
+    public static (Matrix<float> result1, Matrix<float> result2) RowReduction(Matrix<float> m1, Matrix<float> m2, bool throwOnNullColumnValues = false)
     {
         Matrix<float> result = GenerateAugmentedMatrix(m1, m2);
 
@@ -94,8 +99,13 @@ public static partial class MatrixOperations
             {
                 SwapLines(result, i, k);
             }
-        
-            float scalar = 1f/result[i, j];
+
+            float f = result[i, j];
+            if (f == 0f)
+            {
+                f = 1f;
+            }
+            float scalar = 1f/f;
             MultiplyLine(result, i, scalar);
         
             for (int row = 0; row < m1.RowCount; row++)

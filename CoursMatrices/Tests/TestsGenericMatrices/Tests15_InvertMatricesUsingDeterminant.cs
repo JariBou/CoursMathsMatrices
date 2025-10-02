@@ -20,7 +20,7 @@ namespace CoursMatrices.Tests.TestsGenericMatrices
             });
 
             Matrix<float> mInverted = m.InvertByDeterminant();
-            Matrix<float> mInvertedRowReduction = m.InvertByRowReduction();
+            Matrix<float> mInvertedRowReduction = m.InvertByExplicitRowReduction();
 
             Assert.Multiple(() =>
             {

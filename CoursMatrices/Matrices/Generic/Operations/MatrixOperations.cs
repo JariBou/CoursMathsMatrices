@@ -50,6 +50,18 @@ public static partial class MatrixOperations
         return result;
     }
     
+    public static Matrix<T> Multiply<T>(params Matrix<T>[] matrixes) where T : INumber<T>, new()
+    {
+        // we assume they all have the same size, if they don't an error wil be thrown when multiplying them anyway
+        var result = matrixes[0];
+        for (int i = 1; i < matrixes.Length; i++)
+        {
+            result = Multiply(result, matrixes[i]);
+        }
+        
+        return result;
+    }
+    
     public static Matrix<T> GenerateAugmentedMatrix<T>(Matrix<T> m1, Matrix<T> m2) where T : INumber<T>, new()
     {
         if (m1.RowCount != m2.RowCount) throw new MatrixSizeOperationException(m1, m2);
@@ -67,6 +79,23 @@ public static partial class MatrixOperations
         return augmentedMatrix;
     }
     
+    /// <summary>
+    /// Inverts a matrix using the explicit row reduction algorithm
+    /// </summary>
+    /// <param name="m1"> The matrix to invert </param>
+    /// <typeparam name="T"> The type of the inverted matrix </typeparam>
+    /// <returns> A new matrix that is the reduction of the input matrix </returns>
+    public static Matrix<float> InvertByExplicitRowReduction<T>(Matrix<T> m1) where T : INumber<T>, new()
+    {
+        return ExplicitRowReduction(m1.ConvertTo<float>(), Identity<float>(m1.RowCount), true).result2;
+    }
+    
+    /// <summary>
+    /// Inverts a matrix using the row reduction algorithm
+    /// </summary>
+    /// <param name="m1"> The matrix to invert </param>
+    /// <typeparam name="T"> The type of the inverted matrix </typeparam>
+    /// <returns> A new matrix that is the reduction of the input matrix </returns>
     public static Matrix<float> InvertByRowReduction<T>(Matrix<T> m1) where T : INumber<T>, new()
     {
         return RowReduction(m1.ConvertTo<float>(), Identity<float>(m1.RowCount), true).result2;

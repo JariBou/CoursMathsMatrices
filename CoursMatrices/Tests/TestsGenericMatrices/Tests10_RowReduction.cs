@@ -26,8 +26,8 @@ namespace CoursMatrices.Tests.TestsGenericMatrices
             //This method use deconstruction tuple system
             //More information here =>
             //https://docs.microsoft.com/fr-fr/dotnet/csharp/fundamentals/functional/deconstruct
-            (m1, m2) = MatrixOperations.RowReduction(m1, m2);
-            var (m12, m22) = MatrixOperations.RowReduction2(m1, m2);
+            (m1, m2) = MatrixOperations.ExplicitRowReduction(m1, m2);
+            var (m12, m22) = MatrixOperations.RowReduction(m1, m2);
             Assert.That(new[,]
             {
                 { 1f, 0f, 0f },
@@ -77,8 +77,8 @@ namespace CoursMatrices.Tests.TestsGenericMatrices
             //This method use deconstruction tuple system
             //More information here =>
             //https://docs.microsoft.com/fr-fr/dotnet/csharp/fundamentals/functional/deconstruct
-            (m1, m2) = MatrixOperations.RowReduction(m1, m2);
-            var (m12, m22) = MatrixOperations.RowReduction2(m1, m2);
+            (m1, m2) = MatrixOperations.ExplicitRowReduction(m1, m2);
+            var (m12, m22) = MatrixOperations.RowReduction(m1, m2);
             
             Assert.That(new[,]
             {

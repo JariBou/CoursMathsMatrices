@@ -43,6 +43,19 @@ public partial class Matrix<T>
         return this;
     }
 
+    /// <summary>
+    /// Inverts a matrix using the explicit row reduction algorithm
+    /// </summary>
+    /// <returns> A new matrix that is the reduction of the input matrix </returns>
+    public Matrix<float> InvertByExplicitRowReduction()
+    {
+        return MatrixOperations.InvertByExplicitRowReduction(this);
+    }
+    
+    /// <summary>
+    /// Inverts a matrix using the row reduction algorithm
+    /// </summary>
+    /// <returns> A new matrix that is the reduction of the input matrix </returns>
     public Matrix<float> InvertByRowReduction()
     {
         return MatrixOperations.InvertByRowReduction(this);

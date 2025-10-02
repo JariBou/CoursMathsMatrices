@@ -1,6 +1,6 @@
 ﻿using CoursMatrices.Matrices;
 
-namespace CoursMatrices.Tests
+namespace CoursMatrices.Tests.NonGeneric
 {
     [TestFixture]
     public class Tests03_IdentityMatrices
