@@ -8,7 +8,7 @@ namespace CoursMatrices.Tests.TestsPart4
         [Test]
         public void TestTranslatePoint()
         {
-            Vector4 v = new Vector4(1f, 0f, 0f, 1f);
+            Vector4 v = new(1f, 0f, 0f, 1f);
             Matrix<float> m = new Matrix<float>(new[,]
             {
                 { 1f, 0f, 0f, 5f },
@@ -46,7 +46,7 @@ namespace CoursMatrices.Tests.TestsPart4
         [Test]
         public void TestTranslateDirection()
         {
-            Vector4 v = new Vector4(1f, 0f, 0f, 0f);
+            Vector4 v = new(1f, 0f, 0f, 0f);
             Matrix<float> m = new Matrix<float>(new[,]
             {
                 { 1f, 0f, 0f, 5f },
@@ -83,7 +83,7 @@ namespace CoursMatrices.Tests.TestsPart4
         [Test]
         public void TestScalePoint()
         {
-            Vector4 v = new Vector4(2f, 1f, 3f, 1f);
+            Vector4 v = new(2f, 1f, 3f, 1f);
             Matrix<float> m = new Matrix<float>(new[,]
             {
                 { 0.5f, 0f, 0f, 0f },
@@ -120,7 +120,7 @@ namespace CoursMatrices.Tests.TestsPart4
         [Test]
         public void TestRotatePoint()
         {
-            Vector4 v = new Vector4(1f, 4f, 7f, 1f);
+            Vector4 v = new(1f, 4f, 7f, 1f);
             double a = Math.PI / 2d;
             float cosA = (float)Math.Cos(a);
             float sinA = (float)Math.Sin(a);
@@ -147,7 +147,7 @@ namespace CoursMatrices.Tests.TestsPart4
             Assert.Multiple(() =>
             {
                 //Assert.That(invertByRowReduction.ToArray2D(), Is.EqualTo(invertByDeterminant.ToArray2D()));
-                Assert.That(invertByRowReduction, Is.EqualTo(invertByDeterminant));
+                Assert.That(invertByRowReduction.ToArray2D(), Is.EqualTo(invertByDeterminant.ToArray2D()));
                 Assert.That(vTransformedInverted.x, Is.EqualTo(1f));
                 Assert.That(vTransformedInverted.y, Is.EqualTo(4f));
                 Assert.That(vTransformedInverted.z, Is.EqualTo(7f));

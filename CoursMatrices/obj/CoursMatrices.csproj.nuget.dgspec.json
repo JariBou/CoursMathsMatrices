@@ -1,20 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "F:\\1.CODING\\C#\\CoursMatrices\\CoursMatrices\\CoursMatrices.csproj": {}
+    "D:\\Coding\\C#\\CoursMathsMatrices\\CoursMatrices\\CoursMatrices.csproj": {}
   },
   "projects": {
-    "F:\\1.CODING\\C#\\CoursMatrices\\CoursMatrices\\CoursMatrices.csproj": {
+    "D:\\Coding\\C#\\CoursMathsMatrices\\CoursMatrices\\CoursMatrices.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\1.CODING\\C#\\CoursMatrices\\CoursMatrices\\CoursMatrices.csproj",
+        "projectUniqueName": "D:\\Coding\\C#\\CoursMathsMatrices\\CoursMatrices\\CoursMatrices.csproj",
         "projectName": "CoursMatrices",
-        "projectPath": "F:\\1.CODING\\C#\\CoursMatrices\\CoursMatrices\\CoursMatrices.csproj",
-        "packagesPath": "C:\\Users\\Jari\\.nuget\\packages\\",
-        "outputPath": "F:\\1.CODING\\C#\\CoursMatrices\\CoursMatrices\\obj\\",
+        "projectPath": "D:\\Coding\\C#\\CoursMathsMatrices\\CoursMatrices\\CoursMatrices.csproj",
+        "packagesPath": "C:\\Users\\minef\\.nuget\\packages\\",
+        "outputPath": "D:\\Coding\\C#\\CoursMathsMatrices\\CoursMatrices\\obj\\",
         "projectStyle": "PackageReference",
+        "UsingMicrosoftNETSdk": false,
         "configFilePaths": [
-          "C:\\Users\\Jari\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\minef\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -39,8 +40,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.200"
+        }
       },
       "frameworks": {
         "net9.0": {
@@ -83,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Users\\Jari\\.dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

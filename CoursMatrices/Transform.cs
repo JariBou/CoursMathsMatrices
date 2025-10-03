@@ -126,7 +126,18 @@ public class Transform
     }
 
     // public Matrix<float> LocalToWorldMatrix => !_localToWorldMatrixDirty ? _localToWorldMatrix : RecalculateLocalToWorldMatrix();
-    public Matrix<float> LocalToWorldMatrix => MatrixOperations.Multiply(LocalTranslationMatrix, LocalRotationMatrix, LocalScaleMatrix);
+    public Matrix<float> LocalToWorldMatrix
+    {
+        get
+        {
+            if (Parent is null)
+            {
+                return MatrixOperations.Multiply(LocalTranslationMatrix, LocalRotationMatrix, LocalScaleMatrix);
+            }
+            
+            return MatrixOperations.Multiply(Parent.LocalToWorldMatrix, LocalTranslationMatrix, LocalRotationMatrix, LocalScaleMatrix);
+        }
+    }
 
     // public Matrix<float> WorldToLocalMatrix => !_worldToLocalMatrixDirty ? _worldToLocalMatrix : RecalculateWorldToLocalMatrix();
     public Matrix<float> WorldToLocalMatrix => LocalToWorldMatrix.InvertByDeterminant();
@@ -145,11 +156,14 @@ public class Transform
         {
             if (Parent is null) return LocalPosition;
             
-            
-            
-            Vector4 vector4Pos = new Vector4(LocalPosition.x, LocalPosition.y, LocalPosition.z, 1f);
-            Vector4 worldPos = LocalToWorldMatrix * vector4Pos;
-            return new Vector3(worldPos.x, worldPos.y, worldPos.z);
+            Vector4 vector4Pos = new(LocalPosition.x, LocalPosition.y, LocalPosition.z, 1f);
+            return Parent.LocalToWorldMatrix * vector4Pos;
+        }
+        set
+        {
+            Vector4 vector4Pos = new(value.x, value.y, value.z, 1f);
+            vector4Pos = WorldToLocalMatrix * vector4Pos;
+            LocalPosition = vector4Pos;
         }
     }
 

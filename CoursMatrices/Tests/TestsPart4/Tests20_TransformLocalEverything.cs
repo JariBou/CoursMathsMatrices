@@ -6,7 +6,7 @@ namespace CoursMatrices.Tests.TestsPart4
         [Test]
         public void TestDefaultValues()
         {
-            Transform t = new Transform();
+            Transform t = new();
 
             //Default LocalToWorld Matrix
             Assert.That(new[,]
@@ -36,7 +36,7 @@ namespace CoursMatrices.Tests.TestsPart4
             // R = Rotation Matrix
             // S = Scale Matrix
 
-            Transform t = new Transform();
+            Transform t = new();
             t.LocalPosition = new Vector3(1f, 2f, 3f);
             t.LocalRotation = new Vector3(45f, 90f, 30f);
             t.LocalScale = new Vector3(2f, 4f, 6f);

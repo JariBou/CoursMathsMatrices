@@ -16,7 +16,7 @@ public static partial class MatrixOperations
     
             for (int row = i; row < m1.RowCount; row++)
             {
-                if ((max == null && result[row, j] != 0f) || (max != null && result[row, j] > max))
+                if ((max == null || result[row, j] > max) && result[row, j] != 0f)
                 {
                     max = result[row, j];
                     k = row;
@@ -79,7 +79,7 @@ public static partial class MatrixOperations
     
             for (int row = i; row < m1.RowCount; row++)
             {
-                if ((max == null && result[row, j] != 0f) || (max != null && result[row, j] > max))
+                if ((max == null || result[row, j] > max) && result[row, j] != 0f)
                 {
                     max = result[row, j];
                     k = row;

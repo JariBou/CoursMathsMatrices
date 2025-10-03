@@ -6,7 +6,7 @@ namespace CoursMatrices.Tests.TestsPart4
         [Test]
         public void TestDefaultValues()
         {
-            Transform t = new Transform();
+            Transform t = new();
 
             Assert.Multiple(() =>
             {
@@ -29,7 +29,7 @@ namespace CoursMatrices.Tests.TestsPart4
         [Test]
         public void TestChangeScale()
         {
-            Transform t = new Transform();
+            Transform t = new();
 
             //Scale X
             t.LocalScale = new Vector3(2f, 1f, 1f);

@@ -106,7 +106,7 @@ public static partial class MatrixOperations
         return m.SubMatrix(line, column);
     }
 
-    public static float Determinant<T>(Matrix<T> matrixSource) where T : INumber<T>, new()
+    public static float  Determinant<T>(Matrix<T> matrixSource) where T : INumber<T>, new()
     {
         if (matrixSource.ColumnCount <= 0 || matrixSource.ColumnCount != matrixSource.RowCount) throw new MatrixSizeOperationException(matrixSource);
 

@@ -7,7 +7,7 @@ namespace CoursMatrices.Tests.TestsPart4
         public void TestDefaultValues()
         {
             
-            Transform t = new Transform();
+            Transform t = new();
             
             //Default Rotation
             Assert.That(t.LocalRotation.x, Is.EqualTo(0f));
@@ -51,7 +51,7 @@ namespace CoursMatrices.Tests.TestsPart4
         [Test]
         public void TestChangeRotationXAxis()
         {
-            Transform t = new Transform
+            Transform t = new()
             {
                 LocalRotation = new Vector3(30f, 0f, 0f)
             };
@@ -77,7 +77,7 @@ namespace CoursMatrices.Tests.TestsPart4
         [Test]
         public void TestChangeRotationYAxis()
         {
-            Transform t = new Transform
+            Transform t = new()
             {
                 LocalRotation = new Vector3(0f, 30f, 0f)
             };

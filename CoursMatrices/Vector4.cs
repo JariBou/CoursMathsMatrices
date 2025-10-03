@@ -1,5 +1,4 @@
 ﻿using System.Numerics;
-using System.Runtime.CompilerServices;
 using CoursMatrices.Exceptions;
 using CoursMatrices.Matrices.Generic;
 using CoursMatrices.Matrices.Generic.Operations;
@@ -33,5 +32,4 @@ public struct Vector4(float x, float y, float z, float w)
         Matrix<float> matrix = matrixSource.ConvertTo<float>();
         return new Vector4(matrix[0, 0], matrix[1, 0], matrix[2, 0], matrix[3, 0]);
     }
-    
 }

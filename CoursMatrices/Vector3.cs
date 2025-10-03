@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using System.Diagnostics;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using CoursMatrices.Exceptions;
 using CoursMatrices.Matrices.Generic;
@@ -32,5 +33,22 @@ public struct Vector3(float x, float y, float z)
         Matrix<float> matrix = matrixSource.ConvertTo<float>();
         return new Vector3(matrix[0, 0], matrix[1, 0], matrix[2, 0]);
     }
+
+    public static implicit operator Vector3(Vector4 vector)
+    {
+        return new Vector3(vector.x, vector.y, vector.z);
+    }
     
+    public static Vector3 operator /(Vector3 vector, float number)
+    {
+        return new Vector3(vector.x/number, vector.y/number, vector.z/number);
+    }
+
+
+    public Vector3 Normalize()
+    {
+        return this / Magnitude;
+    }
+
+    public float Magnitude => MathF.Sqrt(x*x + y*y + z*z);
 }
