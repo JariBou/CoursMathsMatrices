@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using CoursMatrices.Matrices.Generic;
+﻿using CoursMatrices.Matrices.Generic;
 using CoursMatrices.Matrices.Generic.Operations;
 
 namespace CoursMatrices;
@@ -165,6 +164,12 @@ public class Transform
             vector4Pos = WorldToLocalMatrix * vector4Pos;
             LocalPosition = vector4Pos;
         }
+    }
+
+    public Quaternion LocalRotationQuaternion
+    {
+        get => Quaternion.Euler(_localRotation);
+        set => _localRotation = value.EulerAngles;
     }
 
     public Transform()

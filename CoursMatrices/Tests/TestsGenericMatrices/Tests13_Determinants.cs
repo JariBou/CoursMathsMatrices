@@ -4,10 +4,10 @@ using CoursMatrices.Matrices.Generic.Operations;
 namespace CoursMatrices.Tests.TestsGenericMatrices
 {
     [TestFixture]
-    public class Tests13_DeterminantsGeneric
+    public class Tests13DeterminantsGeneric
     {
         [Test, DefaultFloatingPointTolerance(0.001f)]
-        public void TestDeterminantMatrix2x2()
+        public void TestDeterminantMatrix2X2()
         {
             Matrix<float> m = new Matrix<float>(new[,]
             {
@@ -21,7 +21,7 @@ namespace CoursMatrices.Tests.TestsGenericMatrices
         }
 
         [Test, DefaultFloatingPointTolerance(0.001f)]
-        public void TestDeterminantMatrix3x3()
+        public void TestDeterminantMatrix3X3()
         {
             Matrix<float> m = new Matrix<float>(new[,]
             {
@@ -36,7 +36,7 @@ namespace CoursMatrices.Tests.TestsGenericMatrices
         }
         
         [Test, DefaultFloatingPointTolerance(0.1f)]
-        public void TestDeterminantMatrix4x4()
+        public void TestDeterminantMatrix4X4()
         {
             Matrix<float> m = new Matrix<float>(new[,]
             {

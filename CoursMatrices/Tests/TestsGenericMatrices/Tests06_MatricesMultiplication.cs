@@ -5,7 +5,7 @@ using CoursMatrices.Matrices.Generic.Operations;
 namespace CoursMatrices.Tests.TestsGenericMatrices
 {
     [TestFixture]
-    public class Tests06_MatricesMultiplicationGeneric
+    public class Tests06MatricesMultiplicationGeneric
     {
         [Test]
         public void TestMatricesMultiplicationInstance()

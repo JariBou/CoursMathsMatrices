@@ -4,7 +4,7 @@ using CoursMatrices.Matrices;
 namespace CoursMatrices.Tests.NonGeneric
 {
     [TestFixture]
-    public class Tests06_MatricesMultiplication
+    public class Tests06MatricesMultiplication
     {
         [Test]
         public void TestMatricesMultiplicationInstance()

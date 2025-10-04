@@ -3,7 +3,7 @@
 namespace CoursMatrices.Tests.NonGeneric
 {
     [TestFixture]
-    public class Tests02_CopyAndModifyMatrices
+    public class Tests02CopyAndModifyMatrices
     {
         [Test]
         public void TestModifyMatrix()

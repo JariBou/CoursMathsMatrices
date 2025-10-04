@@ -4,7 +4,7 @@ using CoursMatrices.Matrices;
 namespace CoursMatrices.Tests.NonGeneric
 {
     [TestFixture]
-    public class Tests05_MatricesAddAndSubtract
+    public class Tests05MatricesAddAndSubtract
     {
         [Test]
         public void TestSumMatricesInstances()

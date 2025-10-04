@@ -3,7 +3,7 @@
 namespace CoursMatrices.Tests.NonGeneric
 {
     [TestFixture]
-    public class Tests04_ScalarMultiplication
+    public class Tests04ScalarMultiplication
     {
         [Test]
         public void TestScalarMultiplicationInstance()

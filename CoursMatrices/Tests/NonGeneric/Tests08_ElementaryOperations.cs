@@ -4,7 +4,7 @@ using CoursMatrices.Matrices;
 namespace CoursMatrices.Tests.NonGeneric
 {
     [TestFixture]
-    public class Tests08_ElementaryOperations
+    public class Tests08ElementaryOperations
     {
         #region Swaps Tests
 

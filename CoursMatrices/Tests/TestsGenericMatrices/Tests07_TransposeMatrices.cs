@@ -3,7 +3,7 @@
 namespace CoursMatrices.Tests.TestsGenericMatrices
 {
     [TestFixture]
-    public class Tests07_TransposeMatricesGeneric
+    public class Tests07TransposeMatricesGeneric
     {
         [Test]
         public void TestTransposeMatrixInstance()
@@ -14,14 +14,14 @@ namespace CoursMatrices.Tests.TestsGenericMatrices
                 { 4, 5, 6 }
             });
 
-            Matrix<int> m1t = m1.Transpose();
+            Matrix<int> m1T = m1.Transpose();
 
             Assert.That(new[,]
             {
                 { 1, 4 },
                 { 2, 5 },
                 { 3, 6 }
-            }, Is.EqualTo(m1t.ToArray2D()));
+            }, Is.EqualTo(m1T.ToArray2D()));
         }
         
         [Test]
@@ -33,14 +33,14 @@ namespace CoursMatrices.Tests.TestsGenericMatrices
                 { 4, 5, 6 }
             });
 
-            Matrix<int> m1t = Matrix<int>.Transpose(m1);
+            Matrix<int> m1T = Matrix<int>.Transpose(m1);
 
             Assert.That(new[,]
             {
                 { 1, 4 },
                 { 2, 5 },
                 { 3, 6 }
-            }, Is.EqualTo(m1t.ToArray2D()));
+            }, Is.EqualTo(m1T.ToArray2D()));
         }
     }
 }

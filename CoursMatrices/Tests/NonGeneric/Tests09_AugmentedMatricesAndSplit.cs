@@ -3,7 +3,7 @@
 namespace CoursMatrices.Tests.NonGeneric
 {
     [TestFixture]
-    public class Tests09_AugmentedMatricesAndSplit
+    public class Tests09AugmentedMatricesAndSplit
     {
         [Test]
         public void TestGenerateAugmentedMatrix()

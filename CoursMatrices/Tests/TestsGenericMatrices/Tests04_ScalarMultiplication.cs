@@ -4,7 +4,7 @@ using CoursMatrices.Matrices.Generic.Operations;
 namespace CoursMatrices.Tests.TestsGenericMatrices
 {
     [TestFixture]
-    public class Tests04_ScalarMultiplicationGeneric
+    public class Tests04ScalarMultiplicationGeneric
     {
         [Test]
         public void TestScalarMultiplicationInstance()

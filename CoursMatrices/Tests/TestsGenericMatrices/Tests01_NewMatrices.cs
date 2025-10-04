@@ -3,7 +3,7 @@
 namespace CoursMatrices.Tests.TestsGenericMatrices
 {
     [TestFixture]
-    public class Tests01_NewMatricesGeneric
+    public class Tests01NewMatricesGeneric
     {
         [Test]
         public void TestNewEmptyMatrices()

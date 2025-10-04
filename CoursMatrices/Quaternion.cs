@@ -17,6 +17,17 @@ public struct Quaternion(float x, float y, float z, float w)
         { 0f                , 0f                , 0f                , 1f },
     });
 
+    public Vector3 EulerAngles
+    {
+        get {
+            Matrix<float> matrixCache = Matrix;
+            float pitch = MathF.Asin(-matrixCache[1, 2]);
+            float yaw = MathF.Cos(pitch) != 0 ? MathF.Atan2(matrixCache[0, 2], matrixCache[2, 2]) : MathF.Atan2(-matrixCache[2, 0], matrixCache[0, 0]);
+            float roll = MathF.Cos(pitch) != 0 ? MathF.Atan2(matrixCache[1, 0], matrixCache[1, 1]) : 0f;
+            return new Vector3(pitch, yaw, roll) * Utils.Math.Rad2Deg;
+        }
+    } 
+
     public Quaternion Conjugate() => new(-x, -y, -z, w);
     public Quaternion Inverse() => Conjugate() / SqrMagnitude();
     
@@ -59,5 +70,16 @@ public struct Quaternion(float x, float y, float z, float w)
         Quaternion vectorQuaternion = new(b.x, b.y, b.z, 0);
         Quaternion quaternion = a * vectorQuaternion * a.Inverse();
         return new Vector3(quaternion.x, quaternion.y, quaternion.z);
+    }
+
+    public static Quaternion Euler(float x, float y, float z)
+    {
+        // return AngleAxis(z, Vector3.ZAxis) * AngleAxis(y, Vector3.XAxis) * AngleAxis(x, Vector3.XAxis);
+        return AngleAxis(y, Vector3.YAxis) * AngleAxis(x, Vector3.XAxis) * AngleAxis(z, Vector3.ZAxis);
+    }
+
+    public static Quaternion Euler(Vector3 localRotation)
+    {
+        return Euler(localRotation.x, localRotation.y, localRotation.z);
     }
 }

@@ -5,7 +5,7 @@ using CoursMatrices.Matrices.Generic.Operations;
 namespace CoursMatrices.Tests.TestsGenericMatrices
 {
     [TestFixture]
-    public class Tests08_ElementaryOperationsGeneric
+    public class Tests08ElementaryOperationsGeneric
     {
         #region Swaps Tests
 

@@ -9,6 +9,10 @@ namespace CoursMatrices;
 
 public struct Vector3(float x, float y, float z)
 {
+    public static readonly Vector3 XAxis = new Vector3(1, 0, 0);
+    public static readonly Vector3 YAxis = new Vector3(0, 1, 0);
+    public static readonly Vector3 ZAxis = new Vector3(0, 0, 1);
+    
     public float x = x;
     public float y = y;
     public float z = z;
@@ -42,6 +46,11 @@ public struct Vector3(float x, float y, float z)
     public static Vector3 operator /(Vector3 vector, float number)
     {
         return new Vector3(vector.x/number, vector.y/number, vector.z/number);
+    }
+    
+    public static Vector3 operator *(Vector3 vector, float number)
+    {
+        return new Vector3(vector.x*number, vector.y*number, vector.z*number);
     }
 
 

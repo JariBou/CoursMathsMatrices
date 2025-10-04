@@ -4,7 +4,7 @@ using CoursMatrices.Matrices.Generic.Operations;
 namespace CoursMatrices.Tests.TestsGenericMatrices
 {
     [TestFixture, DefaultFloatingPointTolerance(0.001f)]
-    public class Tests14_AdjugateMatricesGeneric
+    public class Tests14AdjugateMatricesGeneric
     {
         [Test]
         public void TestCalculateAdjugateMatrixInstance()
@@ -44,7 +44,7 @@ namespace CoursMatrices.Tests.TestsGenericMatrices
         }
 
         [Test]
-        public void TestCalculateAdjugateMatrixIdentity4x4()
+        public void TestCalculateAdjugateMatrixIdentity4X4()
         {
             Matrix<float> m = new Matrix<float>(new[,]
             {

@@ -3,7 +3,7 @@
 namespace CoursMatrices.Tests.NonGeneric
 {
     [TestFixture]
-    public class Tests03_IdentityMatrices
+    public class Tests03IdentityMatrices
     {
         [Test]
         public void TestGenerateIdentityMatrices()

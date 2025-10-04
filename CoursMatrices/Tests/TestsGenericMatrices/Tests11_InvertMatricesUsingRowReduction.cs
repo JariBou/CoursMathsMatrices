@@ -5,7 +5,7 @@ using CoursMatrices.Matrices.Generic.Operations;
 namespace CoursMatrices.Tests.TestsGenericMatrices
 {
     [TestFixture]
-    public class Tests11_InvertMatricesUsingRowReductionGeneric
+    public class Tests11InvertMatricesUsingRowReductionGeneric
     {
         [Test, DefaultFloatingPointTolerance(0.001f)]
         public void TestInvertMatrixInstance()

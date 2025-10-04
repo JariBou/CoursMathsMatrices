@@ -4,7 +4,7 @@ using CoursMatrices.Matrices.Generic.Operations;
 namespace CoursMatrices.Tests.TestsGenericMatrices
 {
     [TestFixture]
-    public class Tests03_IdentityMatricesGeneric
+    public class Tests03IdentityMatricesGeneric
     {
         [Test]
         public void TestGenerateIdentityMatrices()

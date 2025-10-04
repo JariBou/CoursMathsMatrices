@@ -4,7 +4,7 @@ using CoursMatrices.Matrices.Generic.Operations;
 namespace CoursMatrices.Tests.TestsGenericMatrices
 {
     [TestFixture]
-    public class Tests10_RowReductionGeneric
+    public class Tests10RowReductionGeneric
     {
         [Test, DefaultFloatingPointTolerance(0.001f)]
         public void TestApplyRowReduction_CourseExample()
