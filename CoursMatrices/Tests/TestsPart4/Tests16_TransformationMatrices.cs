@@ -1,4 +1,5 @@
 using CoursMatrices.Matrices.Generic;
+using CoursMatrices.Structs;
 
 namespace CoursMatrices.Tests.TestsPart4
 {

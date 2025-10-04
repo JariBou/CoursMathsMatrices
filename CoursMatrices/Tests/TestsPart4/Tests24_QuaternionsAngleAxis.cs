@@ -1,3 +1,5 @@
+using CoursMatrices.Structs;
+
 namespace CoursMatrices.Tests.TestsPart4
 {
     [TestFixture, DefaultFloatingPointTolerance(0.01d)]
@@ -12,10 +14,10 @@ namespace CoursMatrices.Tests.TestsPart4
             Quaternion q = Quaternion.AngleAxis(angle, axis);
             Assert.Multiple(() =>
             {
-                Assert.That(q.x, Is.EqualTo(0.71f));
-                Assert.That(q.y, Is.EqualTo(0f));
-                Assert.That(q.z, Is.EqualTo(0f));
-                Assert.That(q.w, Is.EqualTo(0.71f));
+                Assert.That(q.X, Is.EqualTo(0.71f));
+                Assert.That(q.Y, Is.EqualTo(0f));
+                Assert.That(q.Z, Is.EqualTo(0f));
+                Assert.That(q.W, Is.EqualTo(0.71f));
             });
         }
 
@@ -28,10 +30,10 @@ namespace CoursMatrices.Tests.TestsPart4
             Quaternion q = Quaternion.AngleAxis(angle, axis);
             Assert.Multiple(() =>
             {
-                Assert.That(q.x, Is.EqualTo(0f));
-                Assert.That(q.y, Is.EqualTo(0.71f));
-                Assert.That(q.z, Is.EqualTo(0f));
-                Assert.That(q.w, Is.EqualTo(0.71f));
+                Assert.That(q.X, Is.EqualTo(0f));
+                Assert.That(q.Y, Is.EqualTo(0.71f));
+                Assert.That(q.Z, Is.EqualTo(0f));
+                Assert.That(q.W, Is.EqualTo(0.71f));
             });
         }
 
@@ -44,10 +46,10 @@ namespace CoursMatrices.Tests.TestsPart4
             Quaternion q = Quaternion.AngleAxis(angle, axis);
             Assert.Multiple(() =>
             {
-                Assert.That(q.x, Is.EqualTo(0f));
-                Assert.That(q.y, Is.EqualTo(0f));
-                Assert.That(actual: q.z, Is.EqualTo(0.71f));
-                Assert.That(q.w, Is.EqualTo(0.71f));
+                Assert.That(q.X, Is.EqualTo(0f));
+                Assert.That(q.Y, Is.EqualTo(0f));
+                Assert.That(actual: q.Z, Is.EqualTo(0.71f));
+                Assert.That(q.W, Is.EqualTo(0.71f));
             });
         }
 
@@ -60,10 +62,10 @@ namespace CoursMatrices.Tests.TestsPart4
             Quaternion q = Quaternion.AngleAxis(angle, axis);
             Assert.Multiple(() =>
             {
-                Assert.That(q.x, Is.EqualTo(0f));
-                Assert.That(q.y, Is.EqualTo(0.3f));
-                Assert.That(q.z, Is.EqualTo(0.4f));
-                Assert.That(q.w, Is.EqualTo(0.87f));
+                Assert.That(q.X, Is.EqualTo(0f));
+                Assert.That(q.Y, Is.EqualTo(0.3f));
+                Assert.That(q.Z, Is.EqualTo(0.4f));
+                Assert.That(q.W, Is.EqualTo(0.87f));
             });
         }
     }

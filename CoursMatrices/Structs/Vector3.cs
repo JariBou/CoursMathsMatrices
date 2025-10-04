@@ -1,17 +1,15 @@
-﻿using System.Diagnostics;
-using System.Numerics;
-using System.Runtime.CompilerServices;
+﻿using System.Numerics;
 using CoursMatrices.Exceptions;
 using CoursMatrices.Matrices.Generic;
 using CoursMatrices.Matrices.Generic.Operations;
 
-namespace CoursMatrices;
+namespace CoursMatrices.Structs;
 
 public struct Vector3(float x, float y, float z)
 {
-    public static readonly Vector3 XAxis = new Vector3(1, 0, 0);
-    public static readonly Vector3 YAxis = new Vector3(0, 1, 0);
-    public static readonly Vector3 ZAxis = new Vector3(0, 0, 1);
+    public static readonly Vector3 XAxis = new(1, 0, 0);
+    public static readonly Vector3 YAxis = new(0, 1, 0);
+    public static readonly Vector3 ZAxis = new(0, 0, 1);
     
     public float x = x;
     public float y = y;

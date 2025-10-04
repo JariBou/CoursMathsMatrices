@@ -1,7 +1,8 @@
-﻿using CoursMatrices.Matrices.Generic;
+﻿using System.Diagnostics.CodeAnalysis;
+using CoursMatrices.Matrices.Generic;
 using CoursMatrices.Matrices.Generic.Operations;
 
-namespace CoursMatrices;
+namespace CoursMatrices.Structs;
 
 public class Transform
 {
@@ -9,15 +10,15 @@ public class Transform
     private Vector3 _localRotation;
     private Vector3 _localScale;
     
-    // private Matrix<float> _localRotationMatrix;
-    
     // The dirty thing is just me exploring ways to try and reduce the amount of expensive operations (before seing test 21...)
-    // private Matrix<float> _localToWorldMatrix;
-    // private bool _localToWorldMatrixDirty;
-    // private Matrix<float> _worldToLocalMatrix;
-    // private bool _worldToLocalMatrixDirty;
+    private Matrix<float> _localRotationMatrix;
+    private bool _isLocalRotationMatrixDirty;
     
-    private Transform? _parent;
+    private Matrix<float> _localToWorldMatrix;
+    private bool _isLocalToWorldMatrixDirty;
+    
+    private Quaternion _localRotationQuaternion;
+    private bool _isLocalRotationQuaternionDirty;
 
     public Vector3 LocalPosition
     {
@@ -25,7 +26,7 @@ public class Transform
         set
         { 
             _localPosition = value;
-            // SetLocalToWorldDirty();
+            SetLocalToWorldDirty();
         }
     }
     
@@ -35,18 +36,19 @@ public class Transform
         set 
         {
             _localRotation = value;
-            // RecalculateRotationMatrix();
-            // SetLocalToWorldDirty();
+            SetLocalRotationMatrixDirty();
+            SetLocalToWorldDirty();
+            SetLocalRotationQuaternionDirty();
         }
     }
-    
+
     public Vector3 LocalScale
     {
         get => _localScale;
         set
         {
             _localScale = value;
-            // SetLocalToWorldDirty();
+            SetLocalToWorldDirty();
         }
     }
 
@@ -72,7 +74,7 @@ public class Transform
                 {1f, 0f, 0f, 0f},
                 {0f, MathF.Cos(theta), -MathF.Sin(theta), 0f},
                 {0f, MathF.Sin(theta), MathF.Cos(theta), 0f},
-                {0f, 0f, 0f, 1f},
+                {0f, 0f, 0f, 1f}
             });
         }
     }
@@ -87,7 +89,7 @@ public class Transform
                 {MathF.Cos(theta), 0f, MathF.Sin(theta), 0f},
                 {0f, 1f, 0f, 0f},
                 {-MathF.Sin(theta), 0f, MathF.Cos(theta), 0f},
-                {0f, 0f, 0f, 1f},
+                {0f, 0f, 0f, 1f}
             });
         }
     }
@@ -102,13 +104,19 @@ public class Transform
                 {MathF.Cos(theta), -MathF.Sin(theta), 0f, 0f},
                 {MathF.Sin(theta), MathF.Cos(theta), 0f, 0f},
                 {0f, 0f, 1f, 0f},
-                {0f, 0f, 0f, 1f},
+                {0f, 0f, 0f, 1f}
             });
         }
     }
 
-    // public Matrix<float> LocalRotationMatrix => _localRotationMatrix;
-    public Matrix<float> LocalRotationMatrix => MatrixOperations.Multiply(LocalRotationYMatrix, LocalRotationXMatrix, LocalRotationZMatrix);
+    public Matrix<float> LocalRotationMatrix
+    {
+        get
+        {
+            if (_isLocalRotationMatrixDirty) RecalculateLocalRotationMatrix();
+            return _localRotationMatrix;
+        }
+    }
 
     public Matrix<float> LocalScaleMatrix
     {
@@ -119,35 +127,26 @@ public class Transform
                 {LocalScale.x, 0f, 0f, 0f},
                 {0f, LocalScale.y, 0f, 0f},
                 {0f, 0f, LocalScale.z, 0f},
-                {0f, 0f, 0f, 1f},
+                {0f, 0f, 0f, 1f}
             });
         }
     }
 
-    // public Matrix<float> LocalToWorldMatrix => !_localToWorldMatrixDirty ? _localToWorldMatrix : RecalculateLocalToWorldMatrix();
     public Matrix<float> LocalToWorldMatrix
     {
         get
         {
-            if (Parent is null)
-            {
-                return MatrixOperations.Multiply(LocalTranslationMatrix, LocalRotationMatrix, LocalScaleMatrix);
-            }
+            if (_isLocalToWorldMatrixDirty) RecalculateLocalToWorldMatrixLocal();
             
-            return MatrixOperations.Multiply(Parent.LocalToWorldMatrix, LocalTranslationMatrix, LocalRotationMatrix, LocalScaleMatrix);
+            return Parent is null ? _localToWorldMatrix : MatrixOperations.Multiply(Parent.LocalToWorldMatrix, _localToWorldMatrix);
         }
     }
 
-    // public Matrix<float> WorldToLocalMatrix => !_worldToLocalMatrixDirty ? _worldToLocalMatrix : RecalculateWorldToLocalMatrix();
     public Matrix<float> WorldToLocalMatrix => LocalToWorldMatrix.InvertByDeterminant();
 
     #endregion
     
-    public Transform? Parent
-    {
-        get => _parent;
-        set => _parent = value;
-    }
+    public Transform? Parent { get; set; }
 
     public Vector3 WorldPosition
     {
@@ -168,8 +167,19 @@ public class Transform
 
     public Quaternion LocalRotationQuaternion
     {
-        get => Quaternion.Euler(_localRotation);
-        set => _localRotation = value.EulerAngles;
+        get
+        {
+            if (_isLocalRotationQuaternionDirty) RecalculateLocalRotationQuaternion();
+            
+            return _localRotationQuaternion;
+        }
+        set
+        {
+            _localRotationQuaternion = value;
+            _localRotation = _localRotationQuaternion.EulerAngles;
+            SetLocalRotationMatrixDirty();
+            SetLocalToWorldDirty();
+        }
     }
 
     public Transform()
@@ -178,47 +188,50 @@ public class Transform
         LocalRotation = new Vector3();
         LocalScale = new Vector3(1f, 1f, 1f);
         
-        // RecalculateRotationMatrix();
-        // RecalculateLocalToWorldMatrix();
-        // RecalculateWorldToLocalMatrix();
+        RecalculateLocalRotationMatrix();
+        RecalculateLocalToWorldMatrixLocal();
+        RecalculateLocalRotationQuaternion();
     }
 
     #region Dirty methods
 
-    // [MemberNotNull(nameof(_localRotationMatrix))]
-    // private void RecalculateRotationMatrix()
-    // {
-    //     _localRotationMatrix =
-    //         MatrixOperations.Multiply(LocalRotationYMatrix, LocalRotationXMatrix, LocalRotationZMatrix);
-    // }
-    //
-    // [MemberNotNull(nameof(_localToWorldMatrix))]
-    // private Matrix<float> RecalculateLocalToWorldMatrix()
-    // {
-    //     _localToWorldMatrix =
-    //         MatrixOperations.Multiply(LocalTranslationMatrix, LocalRotationMatrix, LocalScaleMatrix);
-    //     _localToWorldMatrixDirty = false;
-    //     return _localToWorldMatrix;
-    // }
-    //
-    // [MemberNotNull(nameof(_worldToLocalMatrix))]
-    // private Matrix<float> RecalculateWorldToLocalMatrix()
-    // {
-    //     _worldToLocalMatrix = LocalToWorldMatrix.InvertByDeterminant();
-    //     _worldToLocalMatrixDirty = false;
-    //     return _worldToLocalMatrix;
-    // }
-    //
-    // private void SetLocalToWorldDirty()
-    // {
-    //     _localToWorldMatrixDirty = true;
-    //     SetWorldToLocalDirty(); // when local to world is dirty world to local also is
-    // }
-    //
-    // private void SetWorldToLocalDirty()
-    // {
-    //     _worldToLocalMatrixDirty = true;
-    // }
+    [MemberNotNull(nameof(_localRotationMatrix))]
+    private void RecalculateLocalRotationMatrix()
+    {
+        _localRotationMatrix =
+            MatrixOperations.Multiply(LocalRotationYMatrix, LocalRotationXMatrix, LocalRotationZMatrix);
+        _isLocalRotationMatrixDirty = false;
+    }
+    
+    [MemberNotNull(nameof(_localToWorldMatrix))]
+    private Matrix<float> RecalculateLocalToWorldMatrixLocal()
+    {
+        _localToWorldMatrix = MatrixOperations.Multiply(LocalTranslationMatrix, LocalRotationMatrix, LocalScaleMatrix);
+        _isLocalToWorldMatrixDirty = false;
+        return _localToWorldMatrix;
+    }
+    
+    [MemberNotNull(nameof(_localRotationQuaternion))]
+    private void RecalculateLocalRotationQuaternion()
+    {
+        _localRotationQuaternion = Quaternion.Euler(LocalRotation);
+        _isLocalRotationMatrixDirty = false;
+    }
+    
+    private void SetLocalToWorldDirty()
+    {
+        _isLocalToWorldMatrixDirty = true;
+    }
+    
+    private void SetLocalRotationMatrixDirty()
+    {
+        _isLocalRotationMatrixDirty = true;
+    }
+    
+    private void SetLocalRotationQuaternionDirty()
+    {
+        _isLocalRotationQuaternionDirty = true;
+    }
 
     #endregion
 

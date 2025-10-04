@@ -3,7 +3,7 @@ using CoursMatrices.Exceptions;
 using CoursMatrices.Matrices.Generic;
 using CoursMatrices.Matrices.Generic.Operations;
 
-namespace CoursMatrices;
+namespace CoursMatrices.Structs;
 
 public struct Vector4(float x, float y, float z, float w)
 {

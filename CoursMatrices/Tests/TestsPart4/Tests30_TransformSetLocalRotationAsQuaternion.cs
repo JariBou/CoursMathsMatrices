@@ -1,3 +1,5 @@
+using CoursMatrices.Structs;
+
 namespace CoursMatrices.Tests.TestsPart4
 {
     [TestFixture]

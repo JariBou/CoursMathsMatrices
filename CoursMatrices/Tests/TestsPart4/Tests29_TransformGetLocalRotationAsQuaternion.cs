@@ -1,3 +1,5 @@
+using CoursMatrices.Structs;
+
 namespace CoursMatrices.Tests.TestsPart4
 {
     [TestFixture]
@@ -11,10 +13,10 @@ namespace CoursMatrices.Tests.TestsPart4
             Quaternion q = t.LocalRotationQuaternion;
             Assert.Multiple(() =>
             {
-                Assert.That(q.x, Is.EqualTo(0f));
-                Assert.That(q.y, Is.EqualTo(0f));
-                Assert.That(q.z, Is.EqualTo(0f));
-                Assert.That(q.w, Is.EqualTo(1f));
+                Assert.That(q.X, Is.EqualTo(0f));
+                Assert.That(q.Y, Is.EqualTo(0f));
+                Assert.That(q.Z, Is.EqualTo(0f));
+                Assert.That(q.W, Is.EqualTo(1f));
             });
         }
         
@@ -29,10 +31,10 @@ namespace CoursMatrices.Tests.TestsPart4
             Quaternion q = t.LocalRotationQuaternion;
             Assert.Multiple(() =>
             {
-                Assert.That(q.x, Is.EqualTo(0.259f));
-                Assert.That(q.y, Is.EqualTo(0f));
-                Assert.That(q.z, Is.EqualTo(0f));
-                Assert.That(q.w, Is.EqualTo(0.966f));
+                Assert.That(q.X, Is.EqualTo(0.259f));
+                Assert.That(q.Y, Is.EqualTo(0f));
+                Assert.That(q.Z, Is.EqualTo(0f));
+                Assert.That(q.W, Is.EqualTo(0.966f));
             });
         }
         
@@ -47,10 +49,10 @@ namespace CoursMatrices.Tests.TestsPart4
             Quaternion q = t.LocalRotationQuaternion;
             Assert.Multiple(() =>
             {
-                Assert.That(q.x, Is.EqualTo(0f));
-                Assert.That(q.y, Is.EqualTo(0.259f));
-                Assert.That(q.z, Is.EqualTo(0f));
-                Assert.That(q.w, Is.EqualTo(0.966f));
+                Assert.That(q.X, Is.EqualTo(0f));
+                Assert.That(q.Y, Is.EqualTo(0.259f));
+                Assert.That(q.Z, Is.EqualTo(0f));
+                Assert.That(q.W, Is.EqualTo(0.966f));
             });
         }
         
@@ -65,10 +67,10 @@ namespace CoursMatrices.Tests.TestsPart4
             Quaternion q = t.LocalRotationQuaternion;
             Assert.Multiple(() =>
             {
-                Assert.That(q.x, Is.EqualTo(0f));
-                Assert.That(q.y, Is.EqualTo(0f));
-                Assert.That(q.z, Is.EqualTo(0.259f));
-                Assert.That(q.w, Is.EqualTo(0.966f));
+                Assert.That(q.X, Is.EqualTo(0f));
+                Assert.That(q.Y, Is.EqualTo(0f));
+                Assert.That(q.Z, Is.EqualTo(0.259f));
+                Assert.That(q.W, Is.EqualTo(0.966f));
             });
         }
         
@@ -83,10 +85,10 @@ namespace CoursMatrices.Tests.TestsPart4
             Quaternion q = t.LocalRotationQuaternion;
             Assert.Multiple(() =>
             {
-                Assert.That(q.x, Is.EqualTo(0.430f));
-                Assert.That(q.y, Is.EqualTo(0.092f));
-                Assert.That(q.z, Is.EqualTo(0.561f));
-                Assert.That(q.w, Is.EqualTo(0.701f));
+                Assert.That(q.X, Is.EqualTo(0.430f));
+                Assert.That(q.Y, Is.EqualTo(0.092f));
+                Assert.That(q.Z, Is.EqualTo(0.561f));
+                Assert.That(q.W, Is.EqualTo(0.701f));
             });
         }
     }

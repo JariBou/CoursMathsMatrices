@@ -1,3 +1,5 @@
+using CoursMatrices.Structs;
+
 namespace CoursMatrices.Tests.TestsPart4
 {
     [TestFixture]
@@ -14,10 +16,10 @@ namespace CoursMatrices.Tests.TestsPart4
             Quaternion q = Quaternion.Euler(30f, 45f, 90f);
             Assert.Multiple(() =>
             {
-                Assert.That(q.x, Is.EqualTo(0.430f));
-                Assert.That(q.y, Is.EqualTo(0.092f));
-                Assert.That(q.z, Is.EqualTo(0.561f));
-                Assert.That(q.w, Is.EqualTo(0.701f));
+                Assert.That(q.X, Is.EqualTo(0.430f));
+                Assert.That(q.Y, Is.EqualTo(0.092f));
+                Assert.That(q.Z, Is.EqualTo(0.561f));
+                Assert.That(q.W, Is.EqualTo(0.701f));
             });
         }
 
@@ -42,10 +44,10 @@ namespace CoursMatrices.Tests.TestsPart4
             Quaternion q = Quaternion.Euler(45f, 0f, 90f);
             Assert.Multiple(() =>
             {
-                Assert.That(q.x, Is.EqualTo(0.271));
-                Assert.That(q.y, Is.EqualTo(-0.271f));
-                Assert.That(q.z, Is.EqualTo(0.653f));
-                Assert.That(q.w, Is.EqualTo(0.653f));
+                Assert.That(q.X, Is.EqualTo(0.271));
+                Assert.That(q.Y, Is.EqualTo(-0.271f));
+                Assert.That(q.Z, Is.EqualTo(0.653f));
+                Assert.That(q.W, Is.EqualTo(0.653f));
             });
         }
         
