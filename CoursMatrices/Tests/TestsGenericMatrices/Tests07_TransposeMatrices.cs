@@ -1,4 +1,5 @@
 ﻿using CoursMatrices.Matrices.Generic;
+using CoursMatrices.Matrices.Generic.Operations;
 
 namespace CoursMatrices.Tests.TestsGenericMatrices
 {
@@ -33,7 +34,7 @@ namespace CoursMatrices.Tests.TestsGenericMatrices
                 { 4, 5, 6 }
             });
 
-            Matrix<int> m1T = Matrix<int>.Transpose(m1);
+            Matrix<int> m1T = MatrixOperations.Transpose(m1);
 
             Assert.That(new[,]
             {

@@ -62,6 +62,11 @@ public static partial class MatrixOperations
         return result;
     }
     
+    public static Matrix<T> Transpose<T>(Matrix<T> matrix) where T : INumber<T>, new()
+    {
+        return matrix.Transpose();
+    }
+    
     public static Matrix<T> GenerateAugmentedMatrix<T>(Matrix<T> m1, Matrix<T> m2) where T : INumber<T>, new()
     {
         if (m1.RowCount != m2.RowCount) throw new MatrixSizeOperationException(m1, m2);

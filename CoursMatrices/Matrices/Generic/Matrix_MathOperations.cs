@@ -26,17 +26,16 @@ public partial class Matrix<T>
 
     public Matrix<T> Add(Matrix<T> m2)
     {
-        if ((ColumnCount != m2.ColumnCount) || (RowCount != m2.RowCount))
+        if (ColumnCount != m2.ColumnCount || RowCount != m2.RowCount)
         {
             throw new MatrixSizeOperationException(this, m2);
         }
-
         
         for (int i = 0; i < RowCount; i++)
         {
             for (int j = 0; j < ColumnCount; j++)
             {
-                this[i, j] += m2[i, j];;
+                this[i, j] += m2[i, j];
             }
         }
         

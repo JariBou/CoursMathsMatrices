@@ -6,7 +6,17 @@ public partial class  Matrix<T>
 {
     private bool Equals(Matrix<T> other)
     {
-        return _columnCount == other._columnCount && _rowCount == other._rowCount && _matrix.Equals(other._matrix);
+        if (ColumnCount != other.ColumnCount || RowCount != other.RowCount) return false;
+
+        for (int i = 0; i < RowCount; i++)
+        {
+            for (int j = 0; j < ColumnCount; j++)
+            {
+                if  (_matrix[i, j] != other[i, j]) return false;
+            }
+        }
+        
+        return true;
     }
 
     public override bool Equals(object? obj)
@@ -14,12 +24,13 @@ public partial class  Matrix<T>
         if (obj is null) return false;
         if (ReferenceEquals(this, obj)) return true;
         if (obj.GetType() != GetType()) return false;
+        
         return Equals((Matrix<T>)obj);
     }
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(_columnCount, _rowCount, _matrix);
+        return HashCode.Combine(ColumnCount, RowCount, _matrix);
     }
 
     public static Matrix<T> operator *(Matrix<T> a, T scalar)
@@ -39,7 +50,7 @@ public partial class  Matrix<T>
     
     public static bool operator ==(Matrix<T> a, Matrix<T> b)
     {
-        if ((a.ColumnCount != b.ColumnCount) || (a.RowCount != b.RowCount)) return false;
+        if (a.ColumnCount != b.ColumnCount || a.RowCount != b.RowCount) return false;
 
         for (int i = 0; i < a.RowCount; i++)
         {

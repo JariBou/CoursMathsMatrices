@@ -6,30 +6,29 @@ namespace CoursMatrices.Matrices.Generic;
 
 public partial class Matrix<T> : IMatrix where T : INumber<T>, new()
 {
-    private readonly int _columnCount;
-    private readonly int _rowCount;
     private readonly T[,] _matrix;
     
-    public int ColumnCount => _columnCount;
-    public int RowCount => _rowCount;
+    public int ColumnCount { get; }
+
+    public int RowCount { get; }
 
     public Matrix(int rowCount, int columnCount)
     {
         if (columnCount < 1 || rowCount < 1)
         {
-            throw new ArgumentOutOfRangeException($"MatrixInt {nameof(rowCount)} & {nameof(columnCount)} must be stricly positive, where '{rowCount}' & '{columnCount}'.");
+            throw new ArgumentOutOfRangeException($"Matrix's {nameof(rowCount)} & {nameof(columnCount)} must be stricly positive, where '{rowCount}' & '{columnCount}'.");
         }
 
-        _columnCount = columnCount;
-        _rowCount = rowCount;
-        _matrix = new T[_rowCount, _columnCount];
+        ColumnCount = columnCount;
+        RowCount = rowCount;
+        _matrix = new T[RowCount, ColumnCount];
     }
 
     public Matrix(T[,]  matrix)
     {
-        _rowCount = matrix.GetLength(0);        
-        _columnCount = matrix.GetLength(1);
-        _matrix = new T[_rowCount, _columnCount];
+        RowCount = matrix.GetLength(0);        
+        ColumnCount = matrix.GetLength(1);
+        _matrix = new T[RowCount, ColumnCount];
         Array.Copy(matrix, _matrix, matrix.Length);
     }
 
@@ -61,8 +60,7 @@ public partial class Matrix<T> : IMatrix where T : INumber<T>, new()
     
     public bool IsIdentity()
     {
-        if (_columnCount != _rowCount) return false;
-        return this == Identity(_columnCount);
+        return ColumnCount == RowCount && this == Identity(ColumnCount);
     }
     
     public static Matrix<T> Identity(int size)
@@ -77,18 +75,13 @@ public partial class Matrix<T> : IMatrix where T : INumber<T>, new()
 
     public Matrix<T> Transpose()
     {
-        return Transpose(this);
-    }
+        Matrix<T> transposedMatrix = new(ColumnCount, RowCount);
 
-    public static Matrix<T> Transpose(Matrix<T> matrix)
-    {
-        Matrix<T> transposedMatrix = new(matrix.ColumnCount, matrix.RowCount);
-
-        for (int i = 0; i < matrix.RowCount; i++)
+        for (int i = 0; i < RowCount; i++)
         {
-            for (int j = 0; j < matrix.ColumnCount; j++)
+            for (int j = 0; j < ColumnCount; j++)
             {
-                transposedMatrix[j, i] = matrix._matrix[i, j];
+                transposedMatrix[j, i] = this[i, j];
             }
         }
         
@@ -120,7 +113,7 @@ public partial class Matrix<T> : IMatrix where T : INumber<T>, new()
 
         if (values.Length < ColumnCount)
         {
-            throw new Exception($"Expected array of size {ColumnCount} but got {values.Length}.");
+            throw new Exception($"Expected array of size {ColumnCount} but was {values.Length}.");
         }
         
         for (int i = 0; i < ColumnCount; i++)
@@ -154,7 +147,7 @@ public partial class Matrix<T> : IMatrix where T : INumber<T>, new()
         
         if (values.Length < RowCount)
         {
-            throw new Exception($"Expected array of size {RowCount} but got {values.Length}.");
+            throw new Exception($"Expected array of size {RowCount} was {values.Length}.");
         }
         
         for (int i = 0; i < RowCount; i++)
