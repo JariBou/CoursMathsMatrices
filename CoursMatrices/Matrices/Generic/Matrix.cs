@@ -34,6 +34,15 @@ public partial class Matrix<T> : IMatrix where T : INumber<T>, new()
 
     public Matrix(Matrix<T> target) : this(target._matrix) { }
 
+    /// <summary>
+    /// Used to convert Matrices to another type.
+    /// </summary>
+    /// <remarks>
+    /// Message for Jérôme: I use it to convert input matrices to Matrix&lt;float&gt; because if it's an integer it won't work for certain maths (i.e: determinant)
+    /// could have gone for double, but I think it's fine for the scope of this exercise to stick to floats.
+    /// </remarks>
+    /// <typeparam name="TTarget"></typeparam>
+    /// <returns></returns>
     public Matrix<TTarget> ConvertTo<TTarget>() where TTarget : INumber<TTarget>, new()
     {
         Matrix<TTarget> result =  new Matrix<TTarget>(RowCount, ColumnCount);
