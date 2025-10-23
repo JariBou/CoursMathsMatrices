@@ -117,11 +117,14 @@ public static partial class MatrixOperations
 
         Matrix<float> matrix = matrixSource.ConvertTo<float>();
         
-        if (matrixSource.ColumnCount == 2)
+        switch (matrixSource.ColumnCount)
         {
-            return matrix[0, 0] * matrix[1, 1] - matrix[0, 1] * matrix[1, 0];
+            case 1:
+                return matrix[0, 0];
+            case 2:
+                return matrix[0, 0] * matrix[1, 1] - matrix[0, 1] * matrix[1, 0];
         }
-        
+
         int k = 0;
         float determinant = 0f;
         for (int row = 0; row < matrix.RowCount; row++)
